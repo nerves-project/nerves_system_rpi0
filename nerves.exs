@@ -5,5 +5,5 @@ config :nerves_system_rpi, :nerves_env,
   build_platform: :nerves_system_br,
   bakeware: [target: "rpi", recipe: "nerves/rpi"],
   ext: [
-    defconfig: "elixir_defconfig"
+    defconfig: "nerves_defconfig"
   ]
