@@ -1,9 +1,13 @@
 defmodule NervesSystemRpi.Mixfile do
   use Mix.Project
 
+  @version Path.join(__DIR__, "VERSION")
+    |> File.read!
+    |> String.strip
+
   def project do
     [app: :nerves_system_rpi,
-     version: "0.4.0-rc2",
+     version: @version,
      elixir: "~> 1.2",
      compilers: Mix.compilers ++ [:nerves_system],
      description: description,

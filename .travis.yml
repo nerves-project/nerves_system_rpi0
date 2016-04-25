@@ -1,0 +1,44 @@
+language: erlang
+elixir:
+  - 1.2.4
+otp_release:
+  - 18.3
+
+# It would be possible to use the container-based infrastructure if
+# it ran trusty. However, it doesn't and wget is too old to use for
+# HTTPS to buildroot.net.
+sudo: required
+dist: trusty
+
+# Install dependencies
+addons:
+  apt:
+    packages:
+    - bc
+    - libssl-dev
+
+# Cache downloaded files between builds
+cache:
+    directories:
+      - $HOME/.nerves/cache/buildroot
+
+env:
+  - ELIXIR_VERSION=1.2.4 NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local
+
+before_install:
+    - wget https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip
+    - unzip -d elixir Precompiled.zip
+
+before_script:
+    - export PATH=`pwd`/elixir/bin:$PATH
+
+script:
+  - mix local.hex --force
+  - mix local.rebar --force
+  - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
+  - mix deps.get
+  - mix compile
+
+# Display build log on failure
+after_failure:
+    - tail -n 1000 ./ci/build.log
