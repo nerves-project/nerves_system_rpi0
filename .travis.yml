@@ -23,7 +23,7 @@ cache:
       - $HOME/.nerves/cache/buildroot
 
 env:
-  - ELIXIR_VERSION=1.2.4 NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local
+  - ELIXIR_VERSION=1.2.4 NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local CI_SYSTEM_NAME=nerves_system_rpi
 
 before_install:
     - wget https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip
@@ -39,6 +39,34 @@ script:
   - mix deps.get
   - mix compile
 
+# Deploy the build products
+before_deploy:
+    - mix compress.nerves_system
+    - deps/nerves_system_br/scripts/ci-deploy.sh
+deploy:
+  # Deploy tagged releases to GitHub
+  - provider: releases
+    api_key: $GITHUB_API_KEY
+    file:
+      - "artifacts/$CI_SYSTEM_NAME-$TRAVIS_TAG.tar.gz"
+      - "artifacts/$CI_SYSTEM_NAME-$TRAVIS_TAG.fw"
+    skip_cleanup: true
+    on:
+      repo: nerves-project/nerves_system_rpi
+      tags: true
+  # Copy all build products to S3 
+  - provider: s3
+    access_key_id: $ARTIFACTS_KEY
+    secret_access_key: $ARTIFACTS_SECRET
+    bucket: $ARTIFACTS_BUCKET
+    skip_cleanup: true
+    local_dir: artifacts
+    upload-dir: nerves_system_rpi
+    storage_class: "REDUCED_REDUNDANCY"  # See https://github.com/travis-ci/dpl/issues/291
+    on:
+      repo: nerves-project/nerves_system_rpi
+      all_branches: true
+
 # Display build log on failure
 after_failure:
-    - tail -n 1000 ./ci/build.log
+    - tail -n 1000 build.log

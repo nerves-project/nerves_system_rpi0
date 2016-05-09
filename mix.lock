@@ -4,8 +4,9 @@
   "idna": {:hex, :idna, "1.2.0"},
   "metrics": {:hex, :metrics, "1.0.1"},
   "mimerl": {:hex, :mimerl, "1.0.2"},
-  "nerves_system": {:git, "https://github.com/nerves-project/nerves_system.git", "f5f12d81bab12d8cf9d57ee1ed6c6aefc092a329", []},
-  "nerves_system_br": {:git, "https://github.com/nerves-project/nerves_system_br.git", "d2f6600f67f81b54877f8f7486769bc8d716546a", [tag: "v0.4.0"]},
-  "nerves_toolchain": {:git, "https://github.com/nerves-project/nerves_toolchain.git", "dcade83d5f31c5d34dc31fe6b5f3cbf90389e757", []},
-  "nerves_toolchain_arm_unknown_linux_gnueabi": {:git, "https://github.com/nerves-project/nerves_toolchain_arm_unknown_linux_gnueabi.git", "4b3b37635067f96b138a9a3f163cd8007a1ad466", []},
+  "nerves_system": {:hex, :nerves_system, "0.1.0"},
+  "nerves_system_br": {:hex, :nerves_system_br, "0.4.2"},
+  "nerves_toolchain": {:hex, :nerves_toolchain, "0.6.2"},
+  "nerves_toolchain_arm_unknown_linux_gnueabi": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabi, "0.6.2"},
+  "porcelain": {:hex, :porcelain, "2.0.1"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0"}}

@@ -20,9 +20,9 @@ defmodule NervesSystemRpi.Mixfile do
   end
 
   defp deps do
-    [{:nerves_system, github: "nerves-project/nerves_system"},
-     {:nerves_system_br, github: "nerves-project/nerves_system_br", tag: "v0.4.0"},
-     {:nerves_toolchain_arm_unknown_linux_gnueabi, github: "nerves-project/nerves_toolchain_arm_unknown_linux_gnueabi"}]
+    [{:nerves_system, "~> 0.1.0"},
+     {:nerves_system_br, "~> 0.4.1"},
+     {:nerves_toolchain_arm_unknown_linux_gnueabi, "~> 0.6.0"}]
   end
 
   defp description do
@@ -33,6 +33,7 @@ defmodule NervesSystemRpi.Mixfile do
 
   defp package do
     [maintainers: ["Frank Hunleth", "Justin Schneck"],
+     files: ["LICENSE", "mix.exs", "nerves_defconfig", "nerves.exs", "README.md", "VERSION"],
      licenses: ["Apache 2.0"],
      links: %{"Github" => "https://github.com/nerves-project/nerves_system_rpi"}]
   end
