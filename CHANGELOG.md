@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.1
+  * Nerves.System.BR v0.5.1
+    * Bug Fixes(nerves-env)
+      * Added include paths to CFLAGS and CXXFLAGS
+      * Pass sysroot to LDFLAGS
+
 ## v0.5.0
   * Nerves.System.BR v0.5.0
     * New features
