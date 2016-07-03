@@ -5,7 +5,7 @@
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], []},
   "mimerl": {:hex, :mimerl, "1.0.2", "993f9b0e084083405ed8252b99460c4f0563e41729ab42d9074fd5e52439be88", [:rebar3], []},
   "nerves_system": {:hex, :nerves_system, "0.1.5", "3b523a49eb6c0f49239d1354b772d824be9d62be13651fe2878a9ba5ffd737b0", [:mix], [{:porcelain, "~> 2.0", [hex: :porcelain, optional: false]}]},
-  "nerves_system_br": {:git, "https://github.com/nerves-project/nerves_system_br.git", "6c6702ecfdea59bfb248ff4590cb0532419b5855", [ref: "6c6702ecfdea59bfb248ff4590cb0532419b5855"]},
+  "nerves_system_br": {:hex, :nerves_system_br, "0.6.0", "bf3f762ead48f333436a389cec8c73e792b626553eb6b46b0120093a25a5ea66", [:mix], []},
   "nerves_toolchain": {:hex, :nerves_toolchain, "0.6.3", "c592ea6a189504b1c130510a3c5c2aaf8b73c994628b43d0195544d718c04fb3", [:mix], []},
   "nerves_toolchain_arm_unknown_linux_gnueabi": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabi, "0.6.2", "a8bbfb30bb11b9c0115643feb6d1980335e267c3ea8533d8918863fae6797295", [:mix], [{:nerves_toolchain, "~> 0.6.2", [hex: :nerves_toolchain, optional: false]}]},
   "nerves_toolchain_armv6_rpi_linux_gnueabi": {:hex, :nerves_toolchain_armv6_rpi_linux_gnueabi, "0.6.1", "4c026a70f3c2d0265ce8f718c74bb8aec480a0fc1dbc93d6503fd8269f3187a9", [:mix], [{:nerves_toolchain, "~> 0.6.1", [hex: :nerves_toolchain, optional: false]}]},

@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.0
+  * Nerves.System.BR v0.6.0
+    * Package updates
+      * Erlang OTP 19
+      * Elixir 1.3.1
+      * fwup 0.8.0
+      * erlinit 0.7.3
+      * bborg-overlays (pull in I2C typo fix from upstream)
+    * Bug fixes
+      * Synchronize file system kernel configs across all platforms
+
 ## v0.5.2
   * Enhancements
     * Enabled USB Printer kernel mod. Needs to be loaded with `modprobe` to use
