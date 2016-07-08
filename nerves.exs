@@ -15,6 +15,11 @@ config :nerves_system_rpi, :nerves_env,
   build_config: [
     defconfig: "nerves_defconfig",
     package_files: [
-      "rootfs-additions"
+      "rootfs-additions",
+      "linux-4.1.defconfig",
+      "fwup.conf",
+      "cmdline.txt",
+      "config.txt",
+      "post-createfs.sh"
     ]
   ]
