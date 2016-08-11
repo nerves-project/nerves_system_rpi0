@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.1
+
+  * Package versions
+    * Nerves.System.BR v0.6.1
+
+  * New features
+    * All Raspberry Pi-specific configuration is now in this repository
+    * Enabled SMP Erlang - even though the RPi Zero and Model B+ are
+      single core systems, some NIFs require SMP Erlang.
+
 ## v0.6.0
   * Nerves.System.BR v0.6.0
     * Package updates
