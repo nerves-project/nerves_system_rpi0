@@ -17,7 +17,7 @@ B+ and Zero. This is not the configuration for the Raspberry Pi 2 or 3.
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
-| UART                 | 1 available - ttyACM0           |
+| UART                 | 1 available - `ttyACM0` (called `ttyAMA0` on B and Zero)           |
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | Yes                             |
 | WiFi                 | Requires USB WiFi dongle        |
