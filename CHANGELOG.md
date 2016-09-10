@@ -2,6 +2,15 @@
 
 ## v0.6.2-dev
 
+When upgrading to this version, be sure to review the updates to
+nerves_defconfig. BR2_PACKAGE_ERLANG is no longer selected automatically and
+must be added.
+
+  * nerves_system_br v0.6.2
+    * Package updates
+      * Buildroot 2016.08
+      * Linux 4.4
+
 ## v0.6.1
 
   * Package versions
