@@ -16,7 +16,7 @@ config :nerves_system_rpi, :nerves_env,
     defconfig: "nerves_defconfig",
     package_files: [
       "rootfs-additions",
-      "linux-4.1.defconfig",
+      "linux-4.4.defconfig",
       "fwup.conf",
       "cmdline.txt",
       "config.txt",
