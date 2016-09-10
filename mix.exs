@@ -22,7 +22,7 @@ defmodule NervesSystemRpi.Mixfile do
   defp deps do
     [{:nerves_system, "~> 0.1.4"},
       #{:nerves_system_br, "~> 0.6.1"},
-     {:nerves_system_br, github: "nerves-project/nerves_system_br", tag: "a21bd9c6b3a907b8cbfdbe43194bf5cd33312607"},
+     {:nerves_system_br, github: "nerves-project/nerves_system_br", tag: "26145be1d313387cdd3cefb7c233fedde806e727"},
      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.6.1"}]
   end
 
