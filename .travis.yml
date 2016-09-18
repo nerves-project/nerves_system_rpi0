@@ -29,7 +29,7 @@ cache:
       - $HOME/.nerves/cache/buildroot
 
 env:
-  - NERVES_TARGET=rpi CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=nerves-project/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local
+  - NERVES_TARGET=rpi CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=nerves-project/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local NERVES_PACKAGE=`pwd`
 
 before_install:
   - git clone https://github.com/elixir-lang/elixir
@@ -48,20 +48,19 @@ script:
   - mix deps.get
   - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
   - mix compile
-  - export NERVES_PACKAGE=`pwd`
-  - export NERVES_SYSTEM=`pwd`/_build/dev/nerves/system
-  - export NERVES_TOOLCHAIN=`pwd`/_build/dev/nerves/toolchain
+  - export NERVES_SYSTEM=$NERVES_PACKAGE/_build/dev/nerves/system
+  - export NERVES_TOOLCHAIN=$NERVES_PACKAGE/_build/dev/nerves/toolchain
   - git clone https://github.com/nerves-project/nerves-examples
   - cd nerves-examples/hello_gpio
-  - export MIX_ENV=travis
-  - mix deps.get
-  - mix compile
-  - mix firmware
+  - MIX_ENV=travis mix deps.get
+  - MIX_ENV=travis mix compile
+  - MIX_ENV=travis mix firmware
 
 # Deploy the build products
 before_deploy:
+    - cd $NERVES_PACKAGE
     - mix compress.nerves_system
-    - deps/nerves_system_br/scripts/ci-deploy.sh
+    - $NERVES_PACKAGE/deps/nerves_system_br/scripts/ci-deploy.sh
 
 deploy:
   # Deploy tagged releases to GitHub
@@ -75,7 +74,21 @@ deploy:
     on:
       repo: $REPO
       tags: true
+      
+  - provider: s3
+    access_key_id: $S3_ID
+    secret_access_key: $S3_KEY
+    bucket: $S3_BUCKET
+    skip_cleanup: true
+    local_dir: artifacts
+    upload-dir: test
+    acl: public_read
+    on:
+      repo: $REPO
+      all_branches: true
+
+
 
 # Display build log on failure
 after_failure:
-    - tail -n 1000 build.log
+  - tail -n 1000 $NERVES_PACKAGE/build.log
