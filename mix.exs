@@ -20,17 +20,9 @@ defmodule NervesSystemRpi.Mixfile do
   end
 
   defp deps do
-    [{:nerves_system, github: "nerves-project/nerves_system"},
-      #{:nerves_system_br, "~> 0.6.1"},
-     {:nerves_system_br, github: "nerves-project/nerves_system_br", tag: "26145be1d313387cdd3cefb7c233fedde806e727"},
-     {:nerves_toolchain_armv6_rpi_linux_gnueabi,
-        github: "nerves-project/toolchains",
-        sparse: "nerves_toolchain_armv6_rpi_linux_gnueabi"},
-     {:nerves_toolchain_ctng,
-        github: "nerves-project/toolchains",
-        sparse: "nerves_toolchain_ctng",
-        override: true}
-    ]
+    [{:nerves_system, "~> 0.1.5"},
+     {:nerves_system_br, "~> 0.7.0"},
+     {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.7.0"}]
   end
 
   defp description do
