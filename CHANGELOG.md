@@ -1,11 +1,11 @@
 # Changelog
 
-## v0.6.2-dev
+## v0.7.0
 
 When upgrading to this version, be sure to review the updates to
 nerves_defconfig if you have customized this system.
 
-  * nerves_system_br v0.6.2
+  * nerves_system_br v0.7.0
     * Package updates
       * Buildroot 2016.08
       * Linux 4.4
