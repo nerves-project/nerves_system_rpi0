@@ -48,18 +48,19 @@ script:
   - mix deps.get
   - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
   - mix compile
-  - export NERVES_SYSTEM=$NERVES_PACKAGE/_build/dev/nerves/system
-  - export NERVES_TOOLCHAIN=$NERVES_PACKAGE/_build/dev/nerves/toolchain
-  - git clone https://github.com/nerves-project/nerves-examples
-  - cd nerves-examples/hello_gpio
-  - MIX_ENV=travis mix deps.get
-  - MIX_ENV=travis mix compile
-  - MIX_ENV=travis mix firmware
+  # - export NERVES_SYSTEM=$NERVES_PACKAGE/_build/dev/nerves/system
+  # - export NERVES_TOOLCHAIN=$NERVES_PACKAGE/_build/dev/nerves/toolchain
+  # - git clone https://github.com/nerves-project/nerves-examples
+  # - cd nerves-examples/hello_gpio
+  # - MIX_ENV=travis mix deps.get
+  # - MIX_ENV=travis mix compile
+  # - MIX_ENV=travis mix firmware
 
 # Deploy the build products
 before_deploy:
+    - cd $NERVES_PACKAGE/.nerves/artifacts/*
+    - make system
     - cd $NERVES_PACKAGE
-    - mix compress.nerves_system
     - $NERVES_PACKAGE/deps/nerves_system_br/scripts/ci-deploy.sh
 
 deploy:
@@ -74,7 +75,7 @@ deploy:
     on:
       repo: $REPO
       tags: true
-      
+
   - provider: s3
     access_key_id: $S3_ID
     secret_access_key: $S3_KEY
