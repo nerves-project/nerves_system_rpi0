@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.1
+* Bug Fixes
+  * Loosen mistaken nerves dep on `0.4.0` to `~> 0.4.0`
+
 ## v0.9.0
 
 This version switches to using the `nerves_package` compiler. This will

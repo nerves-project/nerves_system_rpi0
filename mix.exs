@@ -20,7 +20,7 @@ defmodule NervesSystemRpi.Mixfile do
   end
 
   defp deps do
-    [{:nerves, "0.4.0"},
+    [{:nerves, "~> 0.4.0"},
      {:nerves_system_br, "~> 0.8.1"},
      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.8.0"}]
   end
