@@ -1,27 +1,39 @@
-# Raspberry Pi Model A+, B, B+, and Zero
-[![Build Status](https://travis-ci.org/nerves-project/nerves_system_rpi.png?branch=master)](https://travis-ci.org/nerves-project/nerves_system_rpi)
+# Raspberry Pi Model Zero
 
-This is the base Nerves System configuration for the Raspberry Pi A+, B,
-B+ and Zero. This is not the configuration for the Raspberry Pi 2 or 3.
+This is the base Nerves System configuration for the Raspberry Pi Zero.
 
-![Fritzing Raspberry Pi A+ image](assets/images/raspberry-pi-model-a-plus.png)
+![Fritzing Raspberry Pi Zero image](assets/images/raspberry-pi-model-zero.png)
 <br><sup>[Image credit](#fritzing)</sup>
 
 | Feature              | Description                     |
 | -------------------- | ------------------------------- |
-| CPU                  | 700 MHz ARM1176JZF-S for A+, B, and B+, 1 GHz ARM1176JZF-S for the Zero  |
-| Memory               | 256 MB for rev 1 boards, 512 MB for rev 2 and the Zero  |
+| CPU                  | 1 GHz ARM1176JZF-S              |
+| Memory               | 512 MB                          |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.4.43 w/ Raspberry Pi patches  |
-| IEx terminal         | HDMI and USB keyboard (can be changed to UART)   |
+| Linux kernel         | 4.1 w/ Raspberry Pi patches     |
+| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial) |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
 | UART                 | 1 available - `ttyAMA0`         |
 | Camera               | Yes - via rpi-userland          |
-| Ethernet             | Yes                             |
-| WiFi                 | Requires USB WiFi dongle        |
-| Bluetooth            | Not supported                   |
+| Ethernet             | Yes - via OTG USB port          |
+| WiFi                 | IoT pHAT or USB WiFi dongle     |
+| Bluetooth            | Not supported yet               |
+
+## Supported OTG USB modes
+
+The base image activates the `dwc2` overlay, which allows the Pi Zero to appear as a
+device (aka gadget mode). When plugged into a host computer via the OTG port, the Pi
+Zero will appear as a composite ethernet and serial device. 
+
+When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host, with
+somewhat reduced performace vs the `dwc_otg` driver used in other base systems like
+the official `nerves_system_rpi`.
+
+## Supported HAT Wifi devices
+
+The base image includes drivers for the Red Bear IoT pHAT.
 
 ## Supported USB WiFi devices
 
@@ -41,18 +53,6 @@ dongle to generate new log messages if you don't see them.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add nerves_system_rpi to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:nerves_system_rpi, "~> 0.10.0"}]
-        end
-
-  2. Ensure nerves_system_rpi is started before your application:
-
-        def application do
-          [applications: [:nerves_system_rpi]]
-        end
+Coming soon. For now, a custom system build is required until a system image file is created.
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
