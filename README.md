@@ -31,7 +31,7 @@ When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host
 somewhat reduced performace vs the `dwc_otg` driver used in other base systems like
 the official `nerves_system_rpi`.
 
-## Supported HAT Wifi devices
+## Supported HAT WiFi devices
 
 The base image includes drivers for the Red Bear IoT pHAT.
 
