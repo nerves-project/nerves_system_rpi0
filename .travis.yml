@@ -77,7 +77,6 @@ deploy:
     on:
       repo: $REPO
       tags: true
-
   - provider: s3
     access_key_id: $S3_ID
     secret_access_key: $S3_KEY
