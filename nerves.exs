@@ -16,9 +16,10 @@ config pkg, :nerves_env,
   ],
   platform: Nerves.System.BR,
   platform_config: [
-    defconfig: "nerves_defconfig",
+    defconfig: "nerves_defconfig"
   ],
   checksum: [
+    "nerves_defconfig",
     "rootfs-additions",
     "linux-4.4.defconfig",
     "fwup.conf",
