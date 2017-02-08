@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.10.1-dev
+
+  * New features
+    * Enabled USB_SERIAL and FTDI_SIO support. Needed for connecting with Arduino to the USB ports
+
 ## v0.10.0
 
   * New features
