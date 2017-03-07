@@ -1,9 +1,10 @@
 # Changelog
 
-## v0.10.1-dev
+## v0.11.0
 
   * New features
     * Enabled USB_SERIAL and FTDI_SIO support. Needed for connecting with Arduino to the USB ports
+    * Support for Nerves 0.5.0
 
 ## v0.10.0
 
