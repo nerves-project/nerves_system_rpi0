@@ -22,7 +22,7 @@ defmodule NervesSystemRpi.Mixfile do
 
   defp deps do
     [{:nerves, "~> 0.4"},
-     {:nerves_system_br, github: "tmecklem/nerves_system_br", branch: master},
+     {:nerves_system_br, github: "tmecklem/nerves_system_br", branch: "master"},
      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0"}]
   end
 
