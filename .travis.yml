@@ -21,7 +21,7 @@ cache:
       - $HOME/.nerves/cache/buildroot
 
 env:
-  - NERVES_TARGET=rpi CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=nerves-project/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local NERVES_PACKAGE=`pwd`
+  - NERVES_TARGET=rpi0 CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=tmecklem/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local NERVES_PACKAGE=`pwd`
 
 before_install:
   - git clone https://github.com/elixir-lang/elixir
