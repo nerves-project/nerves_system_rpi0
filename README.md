@@ -12,7 +12,7 @@ Raspberry Pi Zero W.
 | Memory               | 512 MB                          |
 | Storage              | MicroSD                         |
 | Linux kernel         | 4.4 w/ Raspberry Pi patches     |
-| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial) |
+| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial via `ttyGS0`) |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
