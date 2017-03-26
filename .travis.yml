@@ -69,17 +69,17 @@ deploy:
     on:
       repo: $REPO
       tags: true
-  - provider: s3
-    access_key_id: $S3_ID
-    secret_access_key: $S3_KEY
-    bucket: $S3_BUCKET
-    skip_cleanup: true
-    local_dir: artifacts
-    upload-dir: test
-    acl: public_read
-    on:
-      repo: $REPO
-      all_branches: true
+#  - provider: s3
+#    access_key_id: $S3_ID
+#    secret_access_key: $S3_KEY
+#    bucket: $S3_BUCKET
+#    skip_cleanup: true
+#    local_dir: artifacts
+#    upload-dir: test
+#    acl: public_read
+#    on:
+#      repo: $REPO
+#      all_branches: true
 
 # Display build log on failure
 after_failure:
