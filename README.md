@@ -1,6 +1,7 @@
 # Raspberry Pi Model Zero
 
-This is the base Nerves System configuration for the Raspberry Pi Zero.
+This is the base Nerves System configuration for the Raspberry Pi Zero and
+Raspberry Pi Zero W.
 
 ![Fritzing Raspberry Pi Zero image](assets/images/raspberry-pi-model-zero.png)
 <br><sup>[Image credit](#fritzing)</sup>
@@ -10,22 +11,22 @@ This is the base Nerves System configuration for the Raspberry Pi Zero.
 | CPU                  | 1 GHz ARM1176JZF-S              |
 | Memory               | 512 MB                          |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.1 w/ Raspberry Pi patches     |
-| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial) |
+| Linux kernel         | 4.4 w/ Raspberry Pi patches     |
+| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial via `ttyGS0`) |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
 | UART                 | 1 available - `ttyAMA0`         |
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | Yes - via OTG USB port          |
-| WiFi                 | IoT pHAT or USB WiFi dongle     |
+| WiFi                 | Pi Zero W, IoT pHAT or USB WiFi dongle |
 | Bluetooth            | Not supported yet               |
 
 ## Supported OTG USB modes
 
 The base image activates the `dwc2` overlay, which allows the Pi Zero to appear as a
 device (aka gadget mode). When plugged into a host computer via the OTG port, the Pi
-Zero will appear as a composite ethernet and serial device. 
+Zero will appear as a composite ethernet and serial device.
 
 When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host, with
 somewhat reduced performace vs the `dwc_otg` driver used in other base systems like
@@ -37,14 +38,9 @@ The base image includes drivers for the Red Bear IoT pHAT.
 
 ## Supported USB WiFi devices
 
-The base image includes drivers and firmware for Ralink RT53xx
+The base image includes drivers and firmware for onboard Raspberry Pi
+Zero W wifi driver (`brcmfmac` driver), Ralink RT53xx
 (`rt2800usb` driver) and RealTek RTL8712U (`r8712u` driver) devices.
-
-We are still working out which subset of all possible WiFi dongles to
-support in our images. At some point, we may have the option to support
-all dongles and selectively install modules at packaging time, but until
-then, these drivers and their associated firmware blobs add significantly
-to Nerves release images.
 
 If you are unsure what driver your WiFi dongle requires, run Raspbian and configure WiFi
 for your device. At a shell prompt, run `lsmod` to see which drivers are loaded.
