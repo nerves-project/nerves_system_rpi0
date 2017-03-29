@@ -1,6 +1,16 @@
 # Changelog
 
-## v0.11.1-dev
+## v0.12.0-dev
+
+  * nerves_system_br v0.10.0
+    * Buildroot 2017.02
+    * Erlang/OTP 19.3
+
+  * New features
+    * Upgraded the Linux kernel from 4.4.43 -> 4.4.50. Due to the coupling
+      between the Linux kernel and rpi-firmware and possibly rpi-userland, if
+      you have a custom system based off this, you should update your Linux
+      kernel as well. (see `nerves_defconfig` changes)
 
 ## v0.11.0
 
