@@ -1,4 +1,4 @@
-defmodule NervesSystemRpi.Mixfile do
+defmodule NervesSystemRpi0.Mixfile do
   use Mix.Project
 
   @version Path.join(__DIR__, "VERSION")
@@ -22,13 +22,13 @@ defmodule NervesSystemRpi.Mixfile do
 
   defp deps do
     [{:nerves, "~> 0.5", runtime: false },
-     {:nerves_system_br, github: "tmecklem/nerves_system_br", branch: "master", runtime: false},
+     {:nerves_system_br, "~> 0.10.0", runtime: false },
      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0", runtime: false}]
   end
 
   defp description do
     """
-    Nerves System - Raspberry Pi A+ / B+ / B / Zero
+    Nerves System - Raspberry Pi Zero and Zero W
     """
   end
 
