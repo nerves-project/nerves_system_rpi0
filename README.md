@@ -29,7 +29,7 @@ device (aka gadget mode). When plugged into a host computer via the OTG port, th
 Zero will appear as a composite ethernet and serial device.
 
 When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host, with
-somewhat reduced performace vs the `dwc_otg` driver used in other base systems like
+somewhat reduced performance due to the `dwc_otg` driver used in other base systems like
 the official `nerves_system_rpi`.
 
 ## Supported WiFi devices
