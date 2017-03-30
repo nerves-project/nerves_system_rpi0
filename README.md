@@ -12,14 +12,14 @@ Raspberry Pi Zero W.
 | Memory               | 512 MB                          |
 | Storage              | MicroSD                         |
 | Linux kernel         | 4.4 w/ Raspberry Pi patches     |
-| IEx terminal         | HDMI and USB keyboard (can be changed to UART or OTG USB serial via `ttyGS0`) |
+| IEx terminal         | OTG USB serial port (`ttyGS0`). Can be changed to HDMI or UART. |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
 | UART                 | 1 available - `ttyAMA0`         |
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | Yes - via OTG USB port          |
-| WiFi                 | Pi Zero W, IoT pHAT or USB WiFi dongle |
+| WiFi                 | Pi Zero W or IoT pHAT           |
 | Bluetooth            | Not supported yet               |
 
 ## Supported OTG USB modes
@@ -29,23 +29,19 @@ device (aka gadget mode). When plugged into a host computer via the OTG port, th
 Zero will appear as a composite ethernet and serial device.
 
 When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host, with
-somewhat reduced performace vs the `dwc_otg` driver used in other base systems like
+somewhat reduced performance due to the `dwc_otg` driver used in other base systems like
 the official `nerves_system_rpi`.
 
-## Supported HAT WiFi devices
+## Supported WiFi devices
 
-The base image includes drivers for the Red Bear IoT pHAT.
+The base image includes drivers for the Red Bear IoT pHAT and the onboard
+Raspberry Pi Zero W wifi module (`brcmfmac` driver).
 
-## Supported USB WiFi devices
-
-The base image includes drivers and firmware for onboard Raspberry Pi
-Zero W wifi driver (`brcmfmac` driver), Ralink RT53xx
-(`rt2800usb` driver) and RealTek RTL8712U (`r8712u` driver) devices.
-
-If you are unsure what driver your WiFi dongle requires, run Raspbian and configure WiFi
-for your device. At a shell prompt, run `lsmod` to see which drivers are loaded.
-Running `dmesg` may also give a clue. When using `dmesg`, reinsert the USB
-dongle to generate new log messages if you don't see them.
+If you are using another WiFi module (for example, a USB module), you will
+need to create a custom system image. Before doing this, check if the
+[nerves_system_rpi](https://github.com/nerves-project/nerves_system_rpi) works
+better for you. That image configures the USB port in host mode by default and
+is probably more appropriate for your setup.
 
 ## Installation
 
