@@ -45,6 +45,8 @@ is probably more appropriate for your setup.
 
 ## Installation
 
-Coming soon. For now, a custom system build is required until a system image file is created.
+Add nerves_system_rpi0 to your list of dependencies in mix.exs:
+
+def deps do [{:"nerves_system_rpi0", github: "tmecklem/nerves_system_rpi0", tag: "v0.11.1", runtime: false}] end
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
