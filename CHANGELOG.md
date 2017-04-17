@@ -1,6 +1,11 @@
 # Changelog
 
-## v0.12.0-dev
+## v0.12.0
+
+This is the first official Raspberry Pi Zero system release. It was forked
+off `nerves_system_rpi` so previous versions are from that project. Those
+also work on the Zero, but without USB gadget mode or RPi Zero W WiFi
+support.
 
   * nerves_system_br v0.10.0
     * Buildroot 2017.02
