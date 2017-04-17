@@ -45,8 +45,11 @@ is probably more appropriate for your setup.
 
 ## Installation
 
-Add nerves_system_rpi0 to your list of dependencies in mix.exs:
+Add `nerves_system_rpi0` to your list of dependencies in mix.exs:
 
-def deps do [{:"nerves_system_rpi0", github: "tmecklem/nerves_system_rpi0", tag: "v0.11.1", runtime: false}] end
-
+```
+  def deps do
+    [{:nerves_system_rpi0, "~> 0.12.0"}]
+  end
+```
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
