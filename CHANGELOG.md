@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.13.0-dev
+
 ## v0.12.0
 
 This is the first official Raspberry Pi Zero system release. It was forked
