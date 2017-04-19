@@ -57,9 +57,9 @@ Add `nerves_system_rpi0` to your list of dependencies in mix.exs:
 
 ## Bluetooth Support
 
-Preparation: Comment out all entries from the `checksum` entry within `nerves.exs`
-to prevent that after a change of the mentioned files a new docker container
-is constructed!
+The following sections documents what was configured and patched to enable
+bluetooth on the RPI Zero W (nearly the same can also be applied to rpi3 since
+the same hardware is used there).
 
 ### Linux Kernel configuration
 Inside the docker container, run `make linux-menuconfig` and do the following:
@@ -89,4 +89,4 @@ Now store the generated buildroot configuration with `make savedefconfig`, leave
 and run `mix` to create the system.
 
 ### TODO:
-* Create a solid Bluetooth userland configuration. 
+* Create a solid Bluetooth userland configuration.

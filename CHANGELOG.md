@@ -2,6 +2,8 @@
 
 ## v0.13.0-dev
 
+  * Add bluetooth support (kernel and blues utilities)
+
 ## v0.12.0
 
 This is the first official Raspberry Pi Zero system release. It was forked
