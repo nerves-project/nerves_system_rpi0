@@ -21,5 +21,7 @@ dtparam=i2c_arm=on,spi=on
 #dtoverlay=w1-gpio-pullup,gpiopin=4
 dtoverlay=dwc2
 
+dtoverlay=pi3-disable-bt
+
 # Enable the UART (/dev/ttyS0) on the RPi3.
 enable_uart=1

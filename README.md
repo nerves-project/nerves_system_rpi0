@@ -1,5 +1,10 @@
 # Raspberry Pi Model Zero
 
+
+> PW - changes: Disabled bluetooth UART in favour of GPIO
+
+
+
 This is the base Nerves System configuration for the Raspberry Pi Zero and
 Raspberry Pi Zero W.
 
