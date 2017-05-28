@@ -1,6 +1,12 @@
 # Changelog
 
-## v0.13.0-dev
+## v0.13.0
+
+  * nerves_system_br v0.11.0
+    * erlinit 1.0
+    * fwup 0.14.2
+    * rpi-userland and rpi-firmware version bumps to correspond with Raspbian
+Linux 4.4 updates
 
 ## v0.12.0
 
