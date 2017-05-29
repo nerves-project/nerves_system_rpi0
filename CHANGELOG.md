@@ -2,6 +2,8 @@
 
 ## v0.13.0
 
+The brcmfmac wireless driver is now built as a module, so you will need to load it. See https://github.com/nerves-project/nerves-examples/tree/master/hello_wifi for an example of WiFi module loading on application startup.
+
   * nerves_system_br v0.11.0
     * erlinit 1.0
     * fwup 0.14.2
