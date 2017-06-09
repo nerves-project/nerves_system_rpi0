@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.14.0-dev
+
+  * nerves_system_br v0.12.0
+    * Buildroot 2017.05
+    * erlinit 1.1.0
+
+  * New features
+    * pigpio is now available by default (enables near real-time use of gpios)
+
+  * Bug fixes
+    * USB host/gadget mode selection doesn't seem to work on some non-Apple
+      hardware. Host support has been disabled as a workaround. See
+      https://github.com/nerves-project/nerves_system_rpi0/issues/10 for details.
+
 ## v0.13.1
 
   * nerves_system_br v0.11.1
