@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.15.0-dev
+
 ## v0.14.0
 
   * nerves_system_br v0.12.0
@@ -13,7 +15,7 @@
     * USB host/gadget mode selection doesn't seem to work on some non-Apple
       hardware. Host support has been disabled as a workaround. See
       https://github.com/nerves-project/nerves_system_rpi0/issues/10 for details.
-      
+
   * Other changes
     * pi3-miniuart-bt overlay is enabled by default to give full speed UART access on GPIO pins
 
