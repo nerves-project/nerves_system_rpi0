@@ -10,7 +10,7 @@ kernel=zImage
 
 # This, along with the Raspberry Pi "x" firmware is need for the camera
 # to work. See Target packages->Hardware handling->Firmware for "x" firmware.
-gpu_mem=128
+gpu_mem=192
 
 # Enable I2C and SPI
 dtparam=i2c_arm=on,spi=on
