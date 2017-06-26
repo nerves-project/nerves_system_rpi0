@@ -1,6 +1,18 @@
 # Changelog
 
-## v0.15.0-dev
+## v0.15.0
+
+  * nerves_system_br v0.12.1
+    * erlinit 1.1.1
+    * fwup 0.15.0
+
+  * New features
+    * The application data partition is now `ext4`. This greatly improves its
+      robustness to corruption. Nerves.Runtime contains code to initialize it on
+      first boot.
+    * Firmware images now contain metadata that can be queried at runtime (see
+      Nerves.Runtime.KV
+    * Increased GPU memory to support Pi Camera V2
 
 ## v0.14.0
 
