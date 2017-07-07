@@ -13,7 +13,8 @@ defmodule NervesSystemRpi0.Mixfile do
      description: description(),
      package: package(),
      deps: deps(),
-     aliases: ["deps.precompile": ["nerves.env", "deps.precompile"]]]
+     aliases: ["deps.precompile": ["nerves.env", "nerves.precompile", "deps.precompile"],
+     "deps.loadpaths":  ["deps.loadpaths", "nerves.loadpaths"]]]
   end
 
   def application do
@@ -23,7 +24,8 @@ defmodule NervesSystemRpi0.Mixfile do
   defp deps do
     [{:nerves, "~> 0.5", runtime: false },
      {:nerves_system_br, "~> 0.13.0", runtime: false },
-     {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0", runtime: false}]
+     {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0", runtime: false},
+     {:nerves_system_test, github: "mobileoverlord/nerves_system_test", only: :test}]
   end
 
   defp description do

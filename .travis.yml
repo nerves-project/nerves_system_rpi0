@@ -1,6 +1,6 @@
 language: erlang
 otp_release:
-  - 19.0
+  - 19.2
 
 # It would be possible to use the container-based infrastructure if
 # it ran trusty. However, it doesn't and wget is too old to use for
@@ -14,6 +14,7 @@ addons:
     packages:
     - bc
     - libssl-dev
+    - squashfs-tools
 
 # Cache downloaded files between builds
 cache:
@@ -21,15 +22,13 @@ cache:
       - $HOME/.nerves/cache/buildroot
 
 env:
-  - NERVES_TARGET=rpi0 CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=nerves-project/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local NERVES_PACKAGE=`pwd`
+  - ELIXIR_VERSION=1.4.4 MIX_ENV=test NERVES_TARGET=rpi0 CI_SYSTEM_NAME=nerves_system_$NERVES_TARGET REPO=nerves-project/$CI_SYSTEM_NAME NERVES_SYSTEM_CACHE=none NERVES_SYSTEM_COMPILER=local NERVES_PACKAGE=`pwd`
 
 before_install:
-  - git clone https://github.com/elixir-lang/elixir
-  - cd elixir
-  - git checkout v1.4.2
-  - make clean
-  - make
-  - cd ..
+  - wget https://github.com/fhunleth/fwup/releases/download/v0.15.1/fwup_0.15.1_amd64.deb;
+  - sudo dpkg -i fwup_0.15.1_amd64.deb;
+  - wget https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip
+  - unzip -d elixir Precompiled.zip
 
 before_script:
   - export PATH=`pwd`/elixir/bin:$PATH
@@ -40,16 +39,7 @@ script:
   - mix deps.get
   - mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
   - mix compile
-  # Testing should be moved to locally execute mix test.
-  #  This will centralize the test suite for systems to the nerves package
-  #  Removing these for now
-  # - export NERVES_SYSTEM=$NERVES_PACKAGE/_build/dev/nerves/system
-  # - export NERVES_TOOLCHAIN=$NERVES_PACKAGE/_build/dev/nerves/toolchain
-  # - git clone https://github.com/nerves-project/nerves-examples
-  # - cd nerves-examples/hello_gpio
-  # - MIX_ENV=travis mix deps.get
-  # - MIX_ENV=travis mix compile
-  # - MIX_ENV=travis mix firmware
+  - mix firmware
 
 # Deploy the build products
 before_deploy:
@@ -57,6 +47,8 @@ before_deploy:
     - make system
     - cd $NERVES_PACKAGE
     - $NERVES_PACKAGE/deps/nerves_system_br/scripts/ci-deploy.sh
+    - mkdir -p fw
+    - cp _build/test/nerves/images/*.fw fw/$TRAVIS_COMMIT.fw
 deploy:
   # Deploy tagged releases to GitHub
   - provider: releases
@@ -76,6 +68,17 @@ deploy:
     skip_cleanup: true
     local_dir: artifacts
     upload-dir: test
+    acl: public_read
+    on:
+      repo: $REPO
+      all_branches: true
+  - provider: s3
+    access_key_id: $S3_ID
+    secret_access_key: $S3_KEY
+    bucket: $S3_BUCKET
+    skip_cleanup: true
+    local_dir: fw
+    upload-dir: fw/$NERVES_TARGET
     acl: public_read
     on:
       repo: $REPO
