@@ -1,6 +1,6 @@
 language: erlang
 otp_release:
-  - 19.2
+  - 20.0
 
 # It would be possible to use the container-based infrastructure if
 # it ran trusty. However, it doesn't and wget is too old to use for
@@ -31,6 +31,7 @@ env:
     - REPO=nerves-project/$CI_SYSTEM_NAME
     - NERVES_PACKAGE=`pwd`
     - NERVES_FW_VCS_IDENTIFIER=$TRAVIS_COMMIT
+    - NERVES_FW_MISC=$TRAVIS_REPO_SLUG
 
 before_install:
   - wget https://github.com/fhunleth/fwup/releases/download/v${FWUP_VERSION}/fwup_${FWUP_VERSION}_amd64.deb
