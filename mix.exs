@@ -22,8 +22,8 @@ defmodule NervesSystemRpi0.Mixfile do
   end
 
   defp deps do
-    [{:nerves, "~> 0.5", runtime: false },
-     {:nerves_system_br, "~> 0.13.0", runtime: false },
+    [{:nerves, github: "nerves-project/nerves", runtime: false, override: true},
+     {:nerves_system_br, "~> 0.13.0", runtime: false},
      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0", runtime: false},
      {:nerves_system_test, github: "mobileoverlord/nerves_system_test", only: :test}]
   end

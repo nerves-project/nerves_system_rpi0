@@ -1,7 +1,7 @@
 %{"bootloader": {:hex, :bootloader, "0.1.1", "66309df4dbaa2a44776538e5c1279472d6e5d9cbeb59b96acbf7ca17f2179b31", [:mix], [{:distillery, "~> 1.0", [hex: :distillery, optional: false]}]},
   "distillery": {:hex, :distillery, "1.4.1", "546d851bf27ae8fe0727e10e4fc4e146ad836eecee138263a60431e688044ed3", [:mix], []},
   "elixir_make": {:hex, :elixir_make, "0.4.0", "992f38fabe705bb45821a728f20914c554b276838433349d4f2341f7a687cddf", [:mix], []},
-  "nerves": {:git, "https://github.com/nerves-project/nerves.git", "d6eaf8291053ed6f2e46b8a31801a2e03b989642", []},
+  "nerves": {:git, "https://github.com/nerves-project/nerves.git", "c0a670b22f68b85f0ad6c4434a74f71ddf2a1518", []},
   "nerves_network": {:git, "https://github.com/nerves-project/nerves_network.git", "08e6e92d4bb99457e4de4a0f0867379dc745db8c", [branch: "default_config"]},
   "nerves_network_interface": {:hex, :nerves_network_interface, "0.4.0", "a8e7662cd56fb4fe9060c891d35c43bbbff692ee6fd2d5efd538717da0cd96b8", [:make, :mix], [{:elixir_make, "~> 0.3", [hex: :elixir_make, optional: false]}]},
   "nerves_runtime": {:hex, :nerves_runtime, "0.4.1", "47985a7c4a79f4374bf42760192ce7b49b87859538836052037f0ce2b8b7dc4d", [:make, :mix], [{:elixir_make, "~> 0.4", [hex: :elixir_make, optional: false]}, {:system_registry, "~> 0.3", [hex: :system_registry, optional: false]}]},
