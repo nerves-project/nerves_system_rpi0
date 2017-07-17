@@ -19,6 +19,7 @@ use Mix.Config
 
 # import_config "#{Mix.Project.config[:target]}.exs"
 
+network_interface = System.get_env("NERVES_NETWORK_INTERFACE") || "eth0"
 key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
 test_server = System.get_env("NERVES_TEST_SERVER")
 websocket_protocol = System.get_env("WEBSOCKET_PROTOCOL") || "ws"
@@ -43,4 +44,5 @@ config :nerves_system_test, Nerves.System.Test.Socket,
   reconnect: true
 
 config :nerves_system_test,
-  target: Mix.Project.config[:target]
+  target: Mix.Project.config[:target],
+  network_interface: "wlan0"
