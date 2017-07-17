@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.16.0
+
+  * nerves_system_br v0.13.2
+    * OTP 20
+    * erlinit 1.1.3
+    * fwup 0.15.3
+
+  * New features
+    * Firmware updates verify that they're updating the right target. If the target
+      doesn't say that it's an `rpi0` through the firmware metadata, the update
+      will fail.
+    * Added meta-misc and meta-vcs-identifier to the `fwup.conf` metadata for use
+      by users and for the regression test framework
+
+  * Bug fixes
+    * The `erlinit` update fixes a hang issue that occurs on reboots if nothing
+      is connected to the USB virtual serial console.
+
 ## v0.15.0
 
   * nerves_system_br v0.12.1
