@@ -5,10 +5,16 @@ defmodule NervesSystemRpi0.Mixfile do
     |> File.read!
     |> String.strip
 
+  hash = :os.cmd('git rev-parse HEAD')
+    |> to_string
+    |> String.strip
+  System.put_env("NERVES_FW_VCS_IDENTIFIER", hash)
+
   def project do
     [app: :nerves_system_rpi0,
      version: @version,
      elixir: "~> 1.3",
+     target: :rpi0,
      compilers: Mix.compilers ++ [:nerves_package],
      description: description(),
      package: package(),
@@ -24,7 +30,7 @@ defmodule NervesSystemRpi0.Mixfile do
   defp deps do
     [
       {:nerves, github: "nerves-project/nerves", runtime: false, override: true},
-      {:nerves_system_br, "~> 0.13.0", runtime: false},
+      {:nerves_system_br, "~> 0.13.2", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.10.0", runtime: false},
       #{:nerves_system_test, github: "mobileoverlord/nerves_system_test", only: :test}
       {:nerves_system_test, path: "../nerves_system_test", only: :test}

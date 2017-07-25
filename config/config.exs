@@ -19,30 +19,39 @@ use Mix.Config
 
 # import_config "#{Mix.Project.config[:target]}.exs"
 
-network_interface = System.get_env("NERVES_NETWORK_INTERFACE") || "eth0"
+network_interface = System.get_env("NERVES_NETWORK_INTERFACE") || "usb0"
 key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
 test_server = System.get_env("NERVES_TEST_SERVER")
 websocket_protocol = System.get_env("WEBSOCKET_PROTOCOL") || "ws"
 
 config :bootloader,
-  init: [:nerves_runtime, :nerves_network],
-  app: :nerves_system_test
+  app: :nerves_system_test,
+  init: [:nerves_runtime, :nerves_network, :nerves_firmware_ssh]
 
 config :nerves_network, :default,
-  wlan0: [
-    ssid: System.get_env("NERVES_NETWORK_SSID"),
-    psk: System.get_env("NERVES_NETWORK_PSK"),
-    key_mgmt: String.to_atom(key_mgmt)
-  ],
   eth0: [
     ipv4_address_method: :dhcp
+  ],
+  usb0: [
+    ipv4_address_method: :linklocal
+  ]
+if ssid = System.get_env("NERVES_NETWORK_SSID") do
+  config :nerves_network, :default,
+    wlan0: [
+      ssid: ssid,
+      psk: System.get_env("NERVES_NETWORK_PSK"),
+      key_mgmt: String.to_atom(key_mgmt)
+    ]
+end
+
+config :nerves_firmware_ssh,
+  authorized_keys: [
+    File.read!(Path.expand("~/.ssh/id_rsa.pub"))
   ]
 
-config :nerves_system_test, Nerves.System.Test.Socket,
-  url: "#{websocket_protocol}://#{test_server}/socket/websocket",
-  serializer: Poison,
-  reconnect: true
+config :nerves_system_test, NervesTestServer.Socket,
+  url: "#{websocket_protocol}://#{test_server}/socket/websocket"
 
 config :nerves_system_test,
   target: Mix.Project.config[:target],
-  network_interface: "wlan0"
+  network_interface: network_interface
