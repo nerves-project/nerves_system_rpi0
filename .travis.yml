@@ -1,6 +1,6 @@
 language: erlang
 otp_release:
-  - 19.0
+  - 20.0
 
 # It would be possible to use the container-based infrastructure if
 # it ran trusty. However, it doesn't and wget is too old to use for
