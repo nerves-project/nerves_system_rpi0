@@ -3,7 +3,7 @@ use Mix.Config
 version =
   Path.join(__DIR__, "VERSION")
   |> File.read!
-  |> String.strip
+  |> String.trim
 
 pkg = :nerves_system_rpi0
 
