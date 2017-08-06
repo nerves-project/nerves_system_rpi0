@@ -1,4 +1,6 @@
 # Raspberry Pi Model Zero
+[![Build Status](https://travis-ci.org/nerves-project/nerves_system_rpi0.png?branch=master)](https://travis-ci.org/nerves-project/nerves_system_rpi0)
+[![Hex version](https://img.shields.io/hexpm/v/nerves_system_rpi0.svg "Hex version")](https://hex.pm/packages/nerves_system_rpi0)
 
 This is the base Nerves System configuration for the Raspberry Pi Zero and
 Raspberry Pi Zero W.
