@@ -51,7 +51,7 @@ Add `nerves_system_rpi0` to your list of dependencies in mix.exs:
 
 ```
   def deps do
-    [{:nerves_system_rpi0, "~> 0.12.0"}]
+    [{:nerves_system_rpi0, "~> 0.16.0"}]
   end
 ```
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
