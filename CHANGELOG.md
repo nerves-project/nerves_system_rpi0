@@ -1,6 +1,23 @@
 # Changelog
 
-## v0.16.1-dev
+## v0.17.0
+  This release contains an updated toolchain with Linux 4.1 Headers.
+  You will have to clean and compile any c/c++ code in your project and
+  dependencies. Failure to do so will result in an error when producing firmware.
+
+  * nerves_system_br v0.13.5
+    * fwup 0.15.4
+
+  * Nerves toolchain v0.11.0
+    https://github.com/nerves-project/toolchains/releases/tag/v0.11.0
+
+  * New Features
+    * Fix warnings for Elixir 1.5
+    * Remove unused options from OTP 20 update
+    * Per Buildroot convention, the rootfs-additions directory is being renamed
+      to rootfs_overlay. A symlink is put in its place to avoid breaking any
+      systems.
+    * Enabled IPv6 Support in Linux kernel
 
 ## v0.16.0
 
