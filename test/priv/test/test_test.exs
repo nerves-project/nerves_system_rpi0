@@ -2,7 +2,7 @@ defmodule TestTest do
   use ExUnit.Case
   doctest Test
 
-  test "execute tests on hardware" do
-    assert 1 + 1 == 2
+  test "i2c-1 interface exists" do
+    assert File.exists?("/dev/i2c-1")
   end
 end
