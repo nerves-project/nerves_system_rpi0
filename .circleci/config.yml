@@ -1,0 +1,180 @@
+defaults: &defaults
+  working_directory: /nerves/build
+  docker:
+    - image: nervesproject/nerves:0.13.5
+  environment:
+    ENV: CI
+    MIX_ENV: test
+    ELIXIR_VERSION: 1.5.1
+
+install_elixir: &install_elixir
+  run:
+    name: Install Elixir
+    command: |
+      wget https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip
+      unzip -d /usr/local/elixir Precompiled.zip
+      echo 'export PATH=/usr/local/elixir/bin:$PATH' >> $BASH_ENV
+
+install_hex_rebar: &install_hex_rebar
+  run:
+    name: Install hex and rebar
+    command: |
+      mix local.hex --force
+      mix local.rebar --force
+
+install_nerves_bootstrap: &install_nerves_bootstrap
+  run:
+    name: Install nerves_bootstrap
+    command: mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
+
+version: 2.0
+
+jobs:
+  build_system:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *install_elixir
+      - <<: *install_hex_rebar
+      - <<: *install_nerves_bootstrap
+      - run:
+          name: Install dependencies
+          command: mix deps.get
+      - restore_cache:
+          key: nerves/cache
+      - run:
+          name: Build
+          command: mix compile
+      - save_cache:
+          key: nerves/cache
+          paths:
+            - "/nerves/cache"
+      - run:
+          name: "Create artifact dir"
+          command: mkdir -p /nerves/deploy/system/artifacts
+      - run:
+          name: "Copy CHANGELOG"
+          command: cp ./CHANGELOG.md /nerves/deploy/system/CHANGELOG.md
+
+      - run:
+          name: "Create system tar artifact"
+          command: |
+            cd /nerves/build/.nerves/artifacts/*
+            make system
+            cp ${CIRCLE_PROJECT_REPONAME}.tar.gz /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}.tar.gz
+      - run:
+          name: "Create system fw artifact"
+          command: |
+            cd /nerves/build/.nerves/artifacts/*
+            cp images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}.fw
+      - store_artifacts:
+          path: /nerves/deploy/system/artifacts
+          destination: system
+      - save_cache:
+          key: nerves/build-{{ .Revision }}
+          paths:
+            - "/nerves/build"
+      - save_cache:
+          key: nerves/deploy/system-{{ .Revision }}
+          paths:
+            - "/nerves/deploy/system"
+
+  build_test:
+    <<: *defaults
+    artifacts:
+      - "/nerves/build/test/_build/test/nerves/images/"
+    working_directory: /nerves/build/test
+    steps:
+      - restore_cache:
+          key: nerves/build-{{ .Revision }}
+      - <<: *install_elixir
+      - <<: *install_hex_rebar
+      - <<: *install_nerves_bootstrap
+      - run:
+          name: Install test dependencies
+          command: mix deps.get
+      - run:
+          name: Create test firmware
+          command: mix firmware
+      - run:
+          name: "Create artifact dir"
+          command: mkdir -p /nerves/deploy/test/artifacts
+      - run:
+          name: Create build context
+          command: >
+            mix json.encode
+            /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json
+            --sha $CIRCLE_SHA1
+            --repo-org $CIRCLE_PROJECT_USERNAME
+            --repo-name $CIRCLE_PROJECT_REPONAME
+            --branch $CIRCLE_BRANCH
+            --tag $CIRCLE_TAG
+            --pr $CIRCLE_PULL_REQUEST
+            --ci circleci
+            --ci-build-url $CIRCLE_BUILD_URL
+            --ci-build-num $CIRCLE_BUILD_NUM
+      - run:
+          name: "Sign test fw artifact"
+          command: fwup --sign --private-key $NERVES_FW_PRIV_KEY -i /nerves/build/test/_build/test/nerves/images/test.fw -o /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.fw
+      - store_artifacts:
+          path: /nerves/deploy/test/artifacts
+          destination: test
+      - save_cache:
+          key: nerves/deploy/test-{{ .Revision }}
+          paths:
+            - "/nerves/deploy/test"
+
+  deploy_test:
+    <<: *defaults
+    steps:
+      - run:
+          name: Install dependencies
+          command: |
+            apt-get update
+            apt-get -y install awscli
+      - restore_cache:
+          key: nerves/deploy/test-{{ .Revision }}
+      - deploy:
+          name: Deploy test to S3
+          command: aws sns publish --topic-arn arn:aws:sns:us-east-1:991424406598:nerves-test-firmware --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
+
+  deploy_system:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: nerves/deploy/system-{{ .Revision }}
+      - run:
+          name: Install dependencies
+          command: |
+            wget https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
+            unzip ghr_v0.5.4_linux_amd64.zip
+      - run:
+          name: "Create Release Notes"
+          command: grep -Pazo "(?s)(## ${CIRCLE_TAG}.\*?)[^#]+" /nerves/deploy/system/CHANGELOG.md > /nerves/deploy/system/RELEASE_NOTES
+      - run:
+          name: Deploy artifacts to Github
+          command: ./ghr -draft -t $GITHUB_TOKEN -u nerves-project -r $CIRCLE_PROJECT_REPONAME -b "$(cat /nerves/deploy/system/RELEASE_NOTES)" -replace $CIRCLE_TAG /nerves/deploy/system/artifacts
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build_system:
+          context: org-global
+      - build_test:
+          context: org-global
+          requires:
+            - build_system
+      - deploy_test:
+          context: org-global
+          requires:
+            - build_test
+      - deploy_system:
+          context: org-global
+          requires:
+            - build_system
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /v(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
