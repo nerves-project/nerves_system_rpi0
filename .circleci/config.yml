@@ -135,7 +135,7 @@ jobs:
       - restore_cache:
           key: nerves/deploy/test-{{ .Revision }}
       - deploy:
-          name: Deploy test to S3
+          name: Publish notification on SNS
           command: aws sns publish --topic-arn arn:aws:sns:us-east-1:991424406598:nerves-test-firmware --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
 
   deploy_system:
@@ -175,6 +175,6 @@ workflows:
             - build_system
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
-              only: /v(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/
+              only: /v.*/
