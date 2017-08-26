@@ -57,16 +57,17 @@ jobs:
           command: cp ./CHANGELOG.md /nerves/deploy/system/CHANGELOG.md
 
       - run:
-          name: "Create system tar artifact"
+          name: "Create artifacts"
           command: |
             cd /nerves/build/.nerves/artifacts/*
             make system
-            cp ${CIRCLE_PROJECT_REPONAME}.tar.gz /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}.tar.gz
-      - run:
-          name: "Create system fw artifact"
-          command: |
-            cd /nerves/build/.nerves/artifacts/*
-            cp images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}.fw
+            if [ -n "$CIRCLE_TAG" ]; then
+              TAG=$CIRCLE_TAG
+            else
+              TAG=$CIRCLE_SHA1
+            fi
+            cp ${CIRCLE_PROJECT_REPONAME}.tar.gz /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.tar.gz
+            cp images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.fw
       - store_artifacts:
           path: /nerves/deploy/system/artifacts
           destination: system
@@ -161,6 +162,9 @@ workflows:
     jobs:
       - build_system:
           context: org-global
+          filters:
+            tags:
+              only: /.*/
       - build_test:
           context: org-global
           requires:
