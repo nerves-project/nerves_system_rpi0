@@ -137,8 +137,8 @@ jobs:
           key: nerves/deploy/test-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - deploy:
           name: Publish notification on SNS
-          command: aws sns publish --topic-arn arn:aws:sns:us-east-1:991424406598:nerves-test-firmware --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
-
+          command: aws sns publish --topic-arn $AWS_SNS_TOPIC_ARN --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
+          
   deploy_system:
     <<: *defaults
     steps:
