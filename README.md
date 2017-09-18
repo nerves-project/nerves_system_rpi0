@@ -28,6 +28,21 @@ is probably more appropriate for your setup.
 | WiFi                 | Supported on the Pi Zero W      |
 | Bluetooth            | Not supported yet               |
 
+## Console and kernel message configuration
+
+The goal of this image is to use the OTG port for console access. If you're
+debugging the boot process, you'll want to use the Raspberry Pi's UART pins on
+the GPIO connector or the HDMI output. This is enabled by updating the
+`cmdline.txt` file. This may be overrided with a custom `fwup.conf` file if
+you don't want to rebuild this system. Add the following to your `cmdline.txt`:
+
+```
+console=ttyAMA0,115200 console=tty1 ...
+```
+
+If you'd like the IEx prompt to come out the UART pins (`ttyAMA0`) or HDMI
+(`tty1`), then modify `rootfs_overlay/etc/erlinit.config` as well.
+
 ## Supported OTG USB modes
 
 The base image activates the `dwc2` overlay, which allows the Pi Zero to appear as a
