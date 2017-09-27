@@ -25,37 +25,38 @@ is probably more appropriate for your setup.
 | UART                 | 1 available - `ttyAMA0`         |
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | Yes - via OTG USB port          |
-| WiFi                 | Pi Zero W or IoT pHAT           |
+| WiFi                 | Supported on the Pi Zero W      |
 | Bluetooth            | Not supported yet               |
 
 ## Supported OTG USB modes
 
 The base image activates the `dwc2` overlay, which allows the Pi Zero to appear as a
 device (aka gadget mode). When plugged into a host computer via the OTG port, the Pi
-Zero will appear as a composite ethernet and serial device.
-
-When a peripheral is plugged into the OTG port, the Pi Zero will act as USB host, with
-somewhat reduced performance due to the `dwc_otg` driver used in other base systems like
-the official `nerves_system_rpi`.
+Zero will appear as a composite Ethernet and serial device. The virtual serial
+port provides access to the IEx prompt and the Ethernet device can be used for
+firmware updates, Erlang distribution, and anything else running over IP.
 
 ## Supported WiFi devices
 
-The base image includes drivers for the Red Bear IoT pHAT and the onboard
-Raspberry Pi Zero W wifi module (`brcmfmac` driver).
+The base image includes drivers for the onboard Raspberry Pi Zero W wifi module
+(`brcmfmac` driver). Due to the USB port being placed in gadget mode, this
+system does not support USB WiFi adapters.
 
-If you are using another WiFi module (for example, a USB module), you will
-need to create a custom system image. Before doing this, check if the
-[nerves_system_rpi](https://github.com/nerves-project/nerves_system_rpi) works
-better for you. That image configures the USB port in host mode by default and
-is probably more appropriate for your setup.
+## Linux kernel and RPi firmware/userland
+
+There's a subtle coupling between the `nerves_system_br` version and the Linux
+kernel version used here. `nerves_system_br` provides the versions of
+`rpi-userland` and `rpi-firmware` that get installed. I prefer to match them to
+the Linux kernel to avoid any issues. Unfortunately, none of these are tagged
+by the Raspberry Pi Foundation so I either attempt to match what's in Raspbian
+or take versions of the repositories that have similar commit times.
 
 ## Installation
 
-Add `nerves_system_rpi0` to your list of dependencies in mix.exs:
+If you're new to Nerves, check out the
+[nerves_init_gadget](https://github.com/fhunleth/nerves_init_gadget) project for
+creating a starter project for the Raspberry Pi Zero or Zero W. It will get you
+started with the basics like bringing up the virtual Ethernet interface,
+initializing the application partition, and enabling ssh-based firmware updates.
 
-```
-  def deps do
-    [{:nerves_system_rpi0, "~> 0.16.0"}]
-  end
-```
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
