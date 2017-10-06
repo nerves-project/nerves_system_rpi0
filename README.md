@@ -5,6 +5,10 @@
 This is the base Nerves System configuration for the Raspberry Pi Zero and
 Raspberry Pi Zero W.
 
+If you are *not* interested in [Gadget Mode](http://www.linux-usb.org/gadget/) it might be worth checking out [nerves_system_rpi](https://github.com/nerves-project/nerves_system_rpi).
+That image configures the USB port in host mode by default and
+is probably more appropriate for your setup.
+
 ![Fritzing Raspberry Pi Zero image](assets/images/raspberry-pi-model-zero.png)
 <br><sup>[Image credit](#fritzing)</sup>
 
