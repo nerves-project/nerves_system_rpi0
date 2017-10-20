@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.18.1
+
+  * Bug fixes
+    * Build `nbtty`
+
 ## v0.18.0
 
   Updated dependencies
@@ -16,7 +21,7 @@
     util-linux's uuid_generate function calls getrandom and can block
     indefinitely for the urandom pool to initialize
 
-  * Bug Fixes
+  * Bug fixes
     * Use `nbtty` by default to fix tty hang issue
 
 ## v0.17.1
