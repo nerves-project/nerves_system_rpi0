@@ -25,7 +25,7 @@ install_hex_rebar: &install_hex_rebar
 install_nerves_bootstrap: &install_nerves_bootstrap
   run:
     name: Install nerves_bootstrap
-    command: mix archive.install https://github.com/nerves-project/archives/raw/master/nerves_bootstrap.ez --force
+    command: mix archive.install hex nerves_bootstrap --force
 
 version: 2.0
 
