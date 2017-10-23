@@ -5,7 +5,7 @@ defaults: &defaults
   environment:
     ENV: CI
     MIX_ENV: test
-    ELIXIR_VERSION: 1.5.1
+    ELIXIR_VERSION: 1.5.2
 
 install_elixir: &install_elixir
   run:
@@ -41,12 +41,12 @@ jobs:
           name: Install dependencies
           command: mix deps.get
       - restore_cache:
-          key: nerves/cache
+          key: nerves/cache-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
       - run:
           name: Build
           command: mix compile
       - save_cache:
-          key: nerves/cache
+          key: nerves/cache-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
           paths:
             - "/nerves/cache"
       - run:
@@ -138,7 +138,7 @@ jobs:
       - deploy:
           name: Publish notification on SNS
           command: aws sns publish --topic-arn $AWS_SNS_TOPIC_ARN --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
-          
+
   deploy_system:
     <<: *defaults
     steps:
@@ -154,7 +154,7 @@ jobs:
           command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" /nerves/deploy/system/CHANGELOG.md > /nerves/deploy/system/RELEASE_NOTES
       - run:
           name: Deploy artifacts to Github
-          command: ./ghr -draft -t $GITHUB_TOKEN -u nerves-project -r $CIRCLE_PROJECT_REPONAME -b "$(cat /nerves/deploy/system/RELEASE_NOTES)" -replace $CIRCLE_TAG /nerves/deploy/system/artifacts
+          command: ./ghr -draft -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -b "$(cat /nerves/deploy/system/RELEASE_NOTES)" -replace $CIRCLE_TAG /nerves/deploy/system/artifacts
 
 workflows:
   version: 2
