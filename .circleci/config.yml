@@ -45,6 +45,9 @@ jobs:
       - run:
           name: Build
           command: mix compile
+      - run:
+          name: Lint
+          command: mix nerves.system.lint nerves_defconfig 
       - save_cache:
           key: nerves/cache-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
           paths:
