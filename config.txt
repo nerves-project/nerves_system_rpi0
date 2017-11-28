@@ -21,7 +21,11 @@ gpu_mem=192
 # Enable I2C, SPI, and audio
 dtparam=i2c_arm=on
 dtparam=spi=on
-dtparam=audio=on
+#dtparam=audio=on
+
+# Google Voice Hat
+dtoverlay=googlevoicehat-soundcard
+dtparam=i2s=on
 
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
