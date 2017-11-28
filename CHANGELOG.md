@@ -1,6 +1,16 @@
 # Changelog
 
+## v0.19.0
+
+  * Updated dependencies
+    * [nerves_system_br v0.15.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.15.1)
+    * [nerves v0.8.3](https://github.com/nerves-project/nerves/releases/tag/v0.8.3)
+    * [nerves_toolchain_armv6_rpi_linux_gnueabi v0.12.0](https://github.com/nerves-project/toolchains/releases/tag/v0.12.0)
+  * Enhancements
+    * Support for nerves 0.8.x Moved nerves.exs to mix.exs
+
 ## v0.18.2
+  
   Updated dependencies
   * [nerves_system_br v0.14.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.14.1)
 
