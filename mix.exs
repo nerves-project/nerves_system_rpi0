@@ -41,7 +41,7 @@ defmodule NervesSystemRpi0.Mixfile do
   defp deps do
     [
       {:nerves, "~> 0.8", runtime: false },
-      {:nerves_system_br, "~> 0.15.0", runtime: false, app: false},
+      {:nerves_system_br, "~> 0.15.1", runtime: false, app: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.12.0", runtime: false, app: false},
     ]
   end
