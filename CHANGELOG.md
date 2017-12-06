@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.19.2
+
+  * Bug fixes
+    * Updated toolchains to 0.12.1 which fixes issues with missing app files.
+
+## v0.19.1
+  
+  * Bug fixes
+    * Rollback release due to errors with toolchains not defining erlang app files
+
 ## v0.19.0
 
   * Updated dependencies
