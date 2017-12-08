@@ -43,7 +43,7 @@ defmodule NervesSystemRpi0.Mixfile do
       {:nerves, "~> 0.8", runtime: false },
       {:nerves_system_br, "~> 0.15.1", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.12.1", runtime: false},
-      {:nerves_system_linter, "~> 0.2.1"}
+      {:nerves_system_linter, "~> 0.2.2"}
     ]
   end
 
