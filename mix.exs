@@ -11,7 +11,7 @@ defmodule NervesSystemRpi0.Mixfile do
       app: @app,
       version: @version,
       elixir: "~> 1.4",
-      compilers: Mix.compilers ++ [:nerves_package],
+      compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
@@ -28,7 +28,7 @@ defmodule NervesSystemRpi0.Mixfile do
     [
       type: :system,
       artifact_url: [
-        "https://github.com/nerves-project/#{@app}/releases/download/v#{@version}/#{@app}-v#{@version}.tar.gz",
+        "https://github.com/nerves-project/#{@app}/releases/download/v#{@version}/#{@app}-v#{@version}.tar.gz"
       ],
       platform: Nerves.System.BR,
       platform_config: [
