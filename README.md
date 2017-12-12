@@ -1,13 +1,16 @@
 # Raspberry Pi Model Zero
+
 [![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_rpi0.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_rpi0)
 [![Hex version](https://img.shields.io/hexpm/v/nerves_system_rpi0.svg "Hex version")](https://hex.pm/packages/nerves_system_rpi0)
 
 This is the base Nerves System configuration for the Raspberry Pi Zero and
 Raspberry Pi Zero W.
 
-If you are *not* interested in [Gadget Mode](http://www.linux-usb.org/gadget/) it might be worth checking out [nerves_system_rpi](https://github.com/nerves-project/nerves_system_rpi).
-That image configures the USB port in host mode by default and
-is probably more appropriate for your setup.
+If you are *not* interested in [Gadget Mode](http://www.linux-usb.org/gadget/)
+then check out
+[nerves_system_rpi](https://github.com/nerves-project/nerves_system_rpi).  That
+system configures the USB port in host mode by default and is probably more
+appropriate for your setup.
 
 ![Fritzing Raspberry Pi Zero image](assets/images/raspberry-pi-model-zero.png)
 <br><sup>[Image credit](#fritzing)</sup>
@@ -131,6 +134,14 @@ the Linux kernel to avoid any issues. Unfortunately, none of these are tagged by
 the Raspberry Pi Foundation so I either attempt to match what's in Raspbian or
 take versions of the repositories that have similar commit times.
 
+## Installation
+
+If you're new to Nerves, check out the
+[nerves_init_gadget](https://github.com/fhunleth/nerves_init_gadget) project for
+creating a starter project for the Raspberry Pi Zero or Zero W. It will get you
+started with the basics like bringing up the virtual Ethernet interface,
+initializing the application partition, and enabling ssh-based firmware updates.
+
 ## Linux kernel configuration notes
 
 The Linux kernel compiled for Nerves is a stripped down version of the default
@@ -140,22 +151,22 @@ configuration found here, do the following (this is somewhat tedious):
 
 1. Start with `arch/arm/configs/bcmrpi_defconfig`. This is the kernel
    configuration used in the official Raspberry Pi images.
-2. Turn off all filesystems except for `ext4`, `squashfs`, `tmpfs`, `proc`,
+1. Turn off all filesystems except for `ext4`, `squashfs`, `tmpfs`, `proc`,
    `sysfs`, and `vfat`. Squashfs only needs ZLIB support.
-3. `vfat` needs to default to `utf8`. Enable native language support for
+1. `vfat` needs to default to `utf8`. Enable native language support for
    `ascii`, `utf-8`, `ISO 8859-1`, codepage 437, and codepage 850.
-4. Disable all network drivers and wireless LAN drivers except for Broadcom
+1. Disable all network drivers and wireless LAN drivers except for Broadcom
    FullMAC WLAN.
-5. Disable PPP and SLIP
-6. Disable the WiFi drivers in the Staging drivers menus
-7. Disable TV, AM/FM, Media USB adapters, DVB Frontends and Remote controller
+1. Disable PPP and SLIP
+1. Disable the WiFi drivers in the Staging drivers menus
+1. Disable TV, AM/FM, Media USB adapters, DVB Frontends and Remote controller
    support in the Multimedia support menus.
-8. Go to `Device Drivers->Sound card support`. Disable `USB sound devices` in
+1. Go to `Device Drivers->Sound card support`. Disable `USB sound devices` in
    ALSA. Disable `Open Sound System`.
-9. Go to `Device Drivers->Graphics support`. Disable `DisplayLink`
-10. Disable everything in `HID support` (NOTE: revisit for Bluetooth)
-11. Disable everything in input device support (can't plug it in anyway)
-12. In the `Device Drivers > USB support` menu, enable gadget mode and disable
+1. Go to `Device Drivers->Graphics support`. Disable `DisplayLink`
+1. Disable everything in `HID support` (NOTE: revisit for Bluetooth)
+1. Disable everything in input device support (can't plug it in anyway)
+1. In the `Device Drivers > USB support` menu, enable gadget mode and disable
    all host mode. It should be possible to completely disable USB host mode if
    all of the USB drivers in previous steps were disabled. See `DesignWare USB2
    Core Support->DWC Mode Selection` and select `CDC Composite Device (Ethernet
@@ -163,56 +174,55 @@ configuration found here, do the following (this is somewhat tedious):
    reenable a few things. There have been unresolved issues in the past with dual
    mode support. It's possible that they are fixed, but be sure to test. They were
    noticed on non-Mac platforms.
-13. In `Kernel Features`, select `Preemptible Kernel (Low-Latency Desktop)`,
+1. In `Kernel Features`, select `Preemptible Kernel (Low-Latency Desktop)`,
     disable the memory allocator for compressed pages.
-14. In `Userspace binary formats`, disable support for MISC binaries.
-15. In `Networking support`, disable Amateur Radio support, CAN bus subsystem,
+1. In `Userspace binary formats`, disable support for MISC binaries.
+1. In `Networking support`, disable Amateur Radio support, CAN bus subsystem,
     IrDA subsystem, Bluetooth, WiMAX, Plan 9, and NFC. (TBD - this may be too
     harsh, please open issues if you're using any of these and it's the only
     reason for you to create a custom system.)
-16. In `Networking options`, disable IPsec, SCTP, Asynchronous Transfer Mode,
+1. In `Networking options`, disable IPsec, SCTP, Asynchronous Transfer Mode,
     802.1d Ethernet Bridging, L2TP, VLAN, Appletalk, 6LoWPAN, 802.15.4, DNS
     Resolver, B.A.T.M.A.N, Open vSwitch, MPLS, and the Packet Generator in Network
     testing.
-17. In `Network options->Wireless`, enable "use statically compiled regulatory
-    rules database". Build in `cfg80211` and `mac80211`. Turn off `mac8022` mesh
+1. In `Networking support->Wireless`, enable "use statically compiled regulatory
+    rules database". Build in `cfg80211` and `mac80211`. Turn off `mac80211` mesh
     networking and LED triggers. Turn off `cfg80211` wireless extensions
     compatibility.
-18. In `Kernel hacking`, disable KGDB, and Magic SysRq key.
-19. In Device Drivers, disable MTD support. In Block devices, deable everything
+1. In `Kernel hacking`, disable KGDB, and Magic SysRq key.
+1. In Device Drivers, disable MTD support. In Block devices, disable everything
     but Loopback and RAM block device. Disable SCSI device support. Disable RAID
     and LVM.
-20. In `Enable the block layer`, deselect everything but the PC BIOS partition
+1. In `Enable the block layer`, deselect everything but the PC BIOS partition
     type (i.e., no Mac partition support, etc.).
-21. In `Enable loadable module support`, select "Trim unused exported kernel
+1. In `Enable loadable module support`, select "Trim unused exported kernel
     symbols". NOTE: If you're having trouble with an out-of-tree kernel module
     build, try deslecting this!!
-22. In `General Setup`, turn off `initramfs/initfd` support, Kernel .config
-    support, OProfile.
-23. In `Device Drivers -> I2C` compile the module into the kernel and disable
-    everything but `BCM2708 BSC` support.
-24. In `Device Drivers -> SPI` compile in the BCM2835 SPI controller and User
-    mode SPI device driver support.
-25. In `Device Drivers -> Dallas's 1-wire support`, disable everything but the
+1. In `General Setup`, turn off `initramfs/initfd` support, Kernel .config
+   support, OProfile.
+1. In `Device Drivers -> I2C -> Hardware Bus Support` compile the module into
+   the kernel and disable everything but `BCM2708 BSC` support.
+1. In `Device Drivers -> SPI` compile in the BCM2835 SPI controller and User
+   mode SPI device driver support.
+1. In `Device Drivers -> Dallas's 1-wire support`, disable everything but the
     GPIO 1-Wire master and the thermometer slave. (NOTE: Why is the thermometer
     compiled in? This seems historical.)
-26. Disable `Hardware Monitoring support`, `Sonics Silicon Backplane support`
-27. In `Device Drivers -> Character devices -> Serial drivers`, disable 8250 and
+1. Disable `Hardware Monitoring support`, `Sonics Silicon Backplane support`
+1. In `Device Drivers -> Character devices -> Serial drivers`, disable 8250 and
     SC16IS7xx support. Disable the RAW driver.
-28. In `Networking support->Network options`, disable `IP: kernel level
+1. In `Networking support->Network options`, disable `IP: kernel level
     autoconfiguration`
-29. In `Networking support->Network options->TCP: advanced congestion control`
+1. In `Networking support->Network options->TCP: advanced congestion control`
     disable everything except for `CUBIC TCP`.
-30. Disable `Real Time Clock`.
-31. Disable everything in `Cryptographic API` and `Library routines` that can be
+1. Disable `Real Time Clock`.
+1. Disable everything in `Cryptographic API` and `Library routines` that can be
     disabled. Sometimes you need to make multiple passes.
-32. Disable EEPROM 93CX6 support, PPS support, all GPIO expanders, Speakup core,
+1. Disable EEPROM 93CX6 support, PPS support, all GPIO expanders, Speakup core,
     Media staging drivers, STMicroelectronics STMPE, anything "Wolfson".
-33. Disable most ALSA for SoC audio support and codecs. NOTE: We probably should
+1. Disable most ALSA for SoC audio support and codecs. NOTE: We probably should
     support a few, but I have no clue which ones are most relevant and there are
     tons of device drivers in the list.
-34. Disable IIO and UIO.
-35. Disable NXP PCA9685 PWM driver
-
+1. Disable IIO and UIO.
+1. Disable NXP PCA9685 PWM driver
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
