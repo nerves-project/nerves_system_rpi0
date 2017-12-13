@@ -71,10 +71,12 @@ defmodule NervesSystemRpi0.Mixfile do
       "VERSION",
       "rootfs_overlay",
       "fwup.conf",
+      "fwup-revert.conf",
+      "post-createfs.sh",
+      "post-build.sh",
       "cmdline.txt",
       "linux-4.4.defconfig",
-      "config.txt",
-      "post-createfs.sh"
+      "config.txt"
     ]
   end
 end
