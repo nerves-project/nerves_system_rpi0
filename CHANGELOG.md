@@ -1,12 +1,25 @@
 # Changelog
 
+## v0.20.0-dev
+
+Important: This image removes kernel log messages from the HDMI and UART ports.
+They are now only available via `dmesg`. If you're debugging a boot hang, you
+can re-enable prints by updating the cmdline.txt. See README.md.
+
+  * Updated dependencies
+    * [nerves_system_br v0.16.0-2017-11](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.16.0-2017-11)
+
+  * Bug fixes
+    * Removed kernel logging from UART and HDMI to avoid interfering with other
+      uses. They are rarely used on those ports.
+
 ## v0.19.2
 
   * Bug fixes
     * Updated toolchains to 0.12.1 which fixes issues with missing app files.
 
 ## v0.19.1
-  
+
   * Bug fixes
     * Rollback release due to errors with toolchains not defining erlang app files
 
@@ -20,7 +33,7 @@
     * Support for nerves 0.8.x Moved nerves.exs to mix.exs
 
 ## v0.18.2
-  
+
   Updated dependencies
   * [nerves_system_br v0.14.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.14.1)
 
