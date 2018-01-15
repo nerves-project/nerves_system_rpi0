@@ -1,17 +1,29 @@
 # Changelog
 
-## v0.20.0-dev
+## v0.20.0
 
 Important: This image removes kernel log messages from the HDMI and UART ports.
 They are now only available via `dmesg`. If you're debugging a boot hang, you
 can re-enable prints by updating the cmdline.txt. See README.md.
 
   * Updated dependencies
-    * [nerves_system_br v0.16.0-2017-11](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.16.0-2017-11)
+    * [nerves_system_br v0.16.1-2017-11](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.16.1-2017-11)
 
   * Bug fixes
     * Removed kernel logging from UART and HDMI to avoid interfering with other
       uses. They are rarely used on those ports.
+
+  * Enhancements
+    * Reboot automatically if Erlang VM exits - This is consistent with other
+      Nerves systems. See rootfs_overlay/etc/erlinit.config if undesired.
+    * Start running nerves_system_linter to check for configuration errors.
+    * Disable console blanking for HDMI to make it easier to capture error messages.
+    * Automount the boot partition readonly at `/boot`
+    * Support for reverting firmware. 
+      
+      See [Reverting Firmware](https://hexdocs.pm/nerves_runtime/readme.html#reverting-firmware) for more info on reverting firmware.
+      
+      See [fwup-revert.conf](https://github.com/nerves-project/nerves_system_rpi/blob/master/fwup-revert.conf) for more information on how fwup handles reverting.
 
 ## v0.19.2
 
