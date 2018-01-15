@@ -19,13 +19,16 @@ install_hex_rebar: &install_hex_rebar
   run:
     name: Install hex and rebar
     command: |
+      cd /tmp
       mix local.hex --force
       mix local.rebar --force
 
 install_nerves_bootstrap: &install_nerves_bootstrap
   run:
     name: Install nerves_bootstrap
-    command: mix archive.install hex nerves_bootstrap --force
+    command: |
+      cd /tmp
+      mix archive.install github nerves-project/nerves_bootstrap --force
 
 version: 2.0
 
@@ -49,9 +52,9 @@ jobs:
           name: Lint
           command: mix nerves.system.lint nerves_defconfig
       - save_cache:
-          key: nerves/cache-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
+          key: nerves/dl-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
           paths:
-            - "/nerves/cache"
+            - "/nerves/dl"
       - run:
           name: "Create artifact dir"
           command: mkdir -p /nerves/deploy/system/artifacts
@@ -62,15 +65,13 @@ jobs:
       - run:
           name: "Create artifacts"
           command: |
-            cd /nerves/build/.nerves/artifacts/*
-            make system
             if [ -n "$CIRCLE_TAG" ]; then
               TAG=$CIRCLE_TAG
             else
               TAG=$CIRCLE_SHA1
             fi
-            cp ${CIRCLE_PROJECT_REPONAME}.tar.gz /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.tar.gz
-            cp images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.fw
+            mix nerves.artifact ${CIRCLE_PROJECT_REPONAME} --path /nerves/deploy/system/artifacts
+            cp .nerves/artifacts/*/images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.fw
       - store_artifacts:
           path: /nerves/deploy/system/artifacts
           destination: system
@@ -94,6 +95,9 @@ jobs:
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
+      - run: 
+          name: Create Nerves paths
+          command: mkdir -p ~/.nerves/artifacts
       - run:
           name: Install test dependencies
           command: mix deps.get

@@ -28,7 +28,7 @@ end
 
 release :test do
   set version: current_version(:test)
-  plugin Bootloader.Plugin
+  plugin Shoehorn
   if System.get_env("NERVES_SYSTEM") do
     set dev_mode: false
     set include_src: false
