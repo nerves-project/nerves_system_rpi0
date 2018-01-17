@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.20.1
+
+  Updated dependencies
+  * [nerves_system_br v0.16.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.16.3)
+    This fixes the call to otp_build so that it always uses Buildroot's version
+    the autoconf tools.
+
 ## v0.20.0
 
 Important: This image removes kernel log messages from the HDMI and UART ports.
