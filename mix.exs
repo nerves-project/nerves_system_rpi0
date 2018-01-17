@@ -3,8 +3,8 @@ defmodule NervesSystemRpi0.Mixfile do
 
   @app :nerves_system_rpi0
   @version Path.join(__DIR__, "VERSION")
-    |> File.read!
-    |> String.trim
+           |> File.read!()
+           |> String.trim()
 
   def project do
     [
@@ -18,7 +18,10 @@ defmodule NervesSystemRpi0.Mixfile do
       deps: deps(),
       aliases: [
         "deps.loadpaths": ["nerves.env", "deps.loadpaths"],
-        "deps.get": ["deps.get", "nerves.deps.get"]]
+        "deps.get": ["deps.get", "nerves.deps.get"],
+        docs: ["docs", &copy_images/1]
+      ],
+      docs: [extras: ["README.md"], main: "readme"]
     ]
   end
 
@@ -45,7 +48,8 @@ defmodule NervesSystemRpi0.Mixfile do
       {:nerves, "~> 0.9", runtime: false },
       {:nerves_system_br, "0.17.0", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.13.0", runtime: false},
-      {:nerves_system_linter, "~> 0.2.2", runtime: false}
+      {:nerves_system_linter, "~> 0.2.2", runtime: false},
+      {:ex_doc, "~> 0.18", only: :dev}
     ]
   end
 
@@ -80,5 +84,10 @@ defmodule NervesSystemRpi0.Mixfile do
       "linux-4.4.defconfig",
       "config.txt"
     ]
+  end
+
+  # Copy the images referenced by docs, since ex_doc doesn't do this.
+  defp copy_images(_) do
+    File.cp_r("assets", "doc/assets")
   end
 end
