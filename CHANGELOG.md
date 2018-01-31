@@ -1,6 +1,9 @@
 # Changelog
 
+## v0.21.1-dev
+
 ## v0.21.0
+
   Updated dependencies
   * [nerves_system_br v0.17.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.17.0)
   * [nerves_toolchain v0.13.0](https://github.com/nerves-project/toolchains/releases/tag/v0.13.0)
@@ -32,10 +35,10 @@ can re-enable prints by updating the cmdline.txt. See README.md.
     * Start running nerves_system_linter to check for configuration errors.
     * Disable console blanking for HDMI to make it easier to capture error messages.
     * Automount the boot partition readonly at `/boot`
-    * Support for reverting firmware. 
-      
+    * Support for reverting firmware.
+
       See [Reverting Firmware](https://hexdocs.pm/nerves_runtime/readme.html#reverting-firmware) for more info on reverting firmware.
-      
+
       See [fwup-revert.conf](https://github.com/nerves-project/nerves_system_rpi/blob/master/fwup-revert.conf) for more information on how fwup handles reverting.
 
 ## v0.19.2
