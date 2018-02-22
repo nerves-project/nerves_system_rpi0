@@ -33,7 +33,7 @@ is probably more appropriate for your setup.
 The goal of this image is to use the OTG port for console access. If you're
 debugging the boot process, you'll want to use the Raspberry Pi's UART pins on
 the GPIO connector or the HDMI output. This is enabled by updating the
-`cmdline.txt` file. This may be overrided with a custom `fwup.conf` file if
+`cmdline.txt` file. This may be overridden with a custom `fwup.conf` file if
 you don't want to rebuild this system. Add the following to your `cmdline.txt`:
 
 ```

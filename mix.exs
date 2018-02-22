@@ -16,11 +16,7 @@ defmodule NervesSystemRpi0.Mixfile do
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [
-        "deps.loadpaths": ["nerves.env", "deps.loadpaths"],
-        "deps.get": ["deps.get", "nerves.deps.get"],
-        docs: ["docs", &copy_images/1]
-      ],
+      aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
       docs: [extras: ["README.md"], main: "readme"]
     ]
   end
@@ -29,7 +25,13 @@ defmodule NervesSystemRpi0.Mixfile do
     []
   end
 
-  def nerves_package do
+  defp bootstrap(args) do
+    System.put_env("MIX_TARGET", "rpi0")
+    Application.start(:nerves_bootstrap)
+    Mix.Task.run("loadconfig", args)
+  end
+
+  defp nerves_package do
     [
       type: :system,
       artifact_sites: [
@@ -45,10 +47,10 @@ defmodule NervesSystemRpi0.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 0.9", runtime: false },
-      {:nerves_system_br, "0.17.0", runtime: false},
-      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 0.13.0", runtime: false},
-      {:nerves_system_linter, "~> 0.2.2", runtime: false},
+      {:nerves, "~> 1.0-rc", runtime: false },
+      {:nerves_system_br, "~> 1.0-rc", runtime: false},
+      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 1.0-rc", runtime: false},
+      {:nerves_system_linter, "~> 0.3.0", runtime: false},
       {:ex_doc, "~> 0.18", only: :dev}
     ]
   end
