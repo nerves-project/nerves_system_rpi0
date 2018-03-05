@@ -1,3 +1,2 @@
 defmodule Test do
-  
 end
