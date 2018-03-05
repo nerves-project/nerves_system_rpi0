@@ -69,7 +69,6 @@ jobs:
               TAG=$CIRCLE_SHA1
             fi
             mix nerves.artifact ${CIRCLE_PROJECT_REPONAME} --path /nerves/deploy/system/artifacts
-            cp .nerves/artifacts/*/images/${CIRCLE_PROJECT_REPONAME}.fw /nerves/deploy/system/artifacts/${CIRCLE_PROJECT_REPONAME}-${TAG}.fw
       - store_artifacts:
           path: /nerves/deploy/system/artifacts
           destination: system
@@ -93,7 +92,7 @@ jobs:
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
-      - run: 
+      - run:
           name: Create Nerves paths
           command: mkdir -p ~/.nerves/artifacts
       - run:
