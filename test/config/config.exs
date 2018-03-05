@@ -25,8 +25,7 @@ config :shoehorn,
   init: [:nerves_runtime, :system_registry_term_storage, :nerves_network]
 
 # Only trust signed firmware
-config :nerves_system_test, :firmware,
-  public_key: System.get_env("NERVES_FW_PUB_KEY")
+config :nerves_system_test, :firmware, public_key: System.get_env("NERVES_FW_PUB_KEY")
 
 # Configure system_registry term storage to store the wifi credentials on the
 #  app data partition. If the device is using eth0 as the primary connection
@@ -81,8 +80,8 @@ config :nerves_runtime, :kv,
   nerves_fw_application_part0_target: "/root",
   nerves_fw_architecture: arch,
   nerves_fw_author: "The Nerves Team",
-  nerves_fw_description: Mix.Project.config[:description],
+  nerves_fw_description: Mix.Project.config()[:description],
   nerves_fw_platform: platform,
-  nerves_fw_product: Mix.Project.config[:app],
+  nerves_fw_product: Mix.Project.config()[:app],
   nerves_fw_vcs_identifier: System.get_env("NERVES_FW_VCS_IDENTIFIER"),
-  nerves_fw_version: Mix.Project.config[:version]
+  nerves_fw_version: Mix.Project.config()[:version]

@@ -47,7 +47,7 @@ defmodule NervesSystemRpi0.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 1.0-rc", runtime: false },
+      {:nerves, "~> 1.0-rc", runtime: false},
       {:nerves_system_br, "~> 1.0-rc", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 1.0-rc", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
