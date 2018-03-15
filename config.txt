@@ -8,6 +8,9 @@
 
 kernel=zImage
 
+# Disable the boot rainbow
+disable_splash=1
+
 # This, along with the Raspberry Pi "x" firmware is need for the camera
 # to work. See Target packages->Hardware handling->Firmware for "x" firmware.
 gpu_mem=192
