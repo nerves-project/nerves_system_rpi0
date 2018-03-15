@@ -24,3 +24,15 @@ dtoverlay=dwc2
 # Enable the UART (/dev/ttyS0) on the RPi0.
 enable_uart=1
 dtoverlay=pi3-miniuart-bt
+
+# The active LED is active low instead of active high like other Raspberry Pis
+dtparam=act_led_activelow=on
+
+# The default is to blink the LED on MicroSD card accesses, but this isn't
+# that useful since Nerves has very few accesses. Switch it to a heartbeat
+# so that it's easy to see if the processor hangs.
+dtparam=act_led_trigger=heartbeat
+
+# To turn the LED completely off comment out the previous line and uncomment
+# the next.
+#dtparam=act_led_trigger=none
