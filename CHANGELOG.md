@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.0.0-rc.1
+
+This release contains updates to Erlang and heart from `nerves_system_br` and
+mostly cosmetic changes to this project. The trivial `.fw` files are no longer
+created by CI scripts. If you've forked this project and are building systems
+using CI, make sure to update your publish scripts.
+
+* Updated dependencies
+  * [nerves_system_br v1.0.0-rc.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.0.0-rc.2)
+
 ## v1.0.0-rc.0
 
 * Updated dependencies
