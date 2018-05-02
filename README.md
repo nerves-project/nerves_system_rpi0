@@ -51,8 +51,8 @@ ssh-based firmware updates.
 The goal of this image is to use the OTG port for console access. If you're
 debugging the boot process, you'll want to use the Raspberry Pi's UART pins on
 the GPIO connector or the HDMI output. This is enabled by updating the
-`cmdline.txt` file. This may be overridden with a custom `fwup.conf` file if
-you don't want to rebuild this system. Add the following to your `cmdline.txt`:
+`cmdline.txt` file. This may be overridden with a custom `fwup.conf` file if you
+don't want to rebuild this system. Add the following to your `cmdline.txt`:
 
 ```text
 console=ttyAMA0,115200 console=tty1 ...
@@ -63,11 +63,12 @@ If you'd like the IEx prompt to come out the UART pins (`ttyAMA0`) or HDMI
 
 ## Supported OTG USB modes
 
-The base image activates the `dwc2` overlay, which allows the Pi Zero to appear as a
-device (aka gadget mode). When plugged into a host computer via the OTG port, the Pi
-Zero will appear as a composite Ethernet and serial device. The virtual serial
-port provides access to the IEx prompt and the Ethernet device can be used for
-firmware updates, Erlang distribution, and anything else running over IP.
+The base image activates the `dwc2` overlay, which allows the Pi Zero to appear
+as a device (aka gadget mode). When plugged into a host computer via the OTG
+port, the Pi Zero will appear as a composite Ethernet and serial device. The
+virtual serial port provides access to the IEx prompt and the Ethernet device
+can be used for firmware updates, Erlang distribution, and anything else running
+over IP.
 
 ## Supported WiFi devices
 
@@ -80,10 +81,8 @@ system does not support USB WiFi adapters.
 There's a subtle coupling between the `nerves_system_br` version and the Linux
 kernel version used here. `nerves_system_br` provides the versions of
 `rpi-userland` and `rpi-firmware` that get installed. I prefer to match them to
-the Linux kernel to avoid any issues. Unfortunately, none of these are tagged
-by the Raspberry Pi Foundation so I either attempt to match what's in Raspbian
-or take versions of the repositories that have similar commit times.
-
-## Installation
+the Linux kernel to avoid any issues. Unfortunately, none of these are tagged by
+the Raspberry Pi Foundation so I either attempt to match what's in Raspbian or
+take versions of the repositories that have similar commit times.
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.

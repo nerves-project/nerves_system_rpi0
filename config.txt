@@ -1,9 +1,10 @@
-# Please note that this is only a sample, we recommend you to change it to fit
-# your needs.
-# You should override this file using a post-build script.
-# See http://buildroot.org/downloads/manual/manual.html#rootfs-custom
-# and http://elinux.org/RPiconfig for a description of config.txt syntax
-# Device tree options are documented at
+# Default Nerves RPi0 config.txt
+#
+# It's possible to override this file by using a custom fwup.conf
+# configuration to pull in a replacement.
+#
+# Useful links:
+# https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
 # https://github.com/raspberrypi/documentation/blob/master/configuration/device-tree.md
 
 kernel=zImage
@@ -12,7 +13,8 @@ kernel=zImage
 disable_splash=1
 
 # This, along with the Raspberry Pi "x" firmware is need for the camera
-# to work. See Target packages->Hardware handling->Firmware for "x" firmware.
+# to work. The Raspberry Pi "x" firmware is selected via the Buildroot
+# configuration. See Target packages->Hardware handling->Firmware.
 gpu_mem=192
 
 # Enable I2C and SPI
