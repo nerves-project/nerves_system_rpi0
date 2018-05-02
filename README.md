@@ -28,6 +28,17 @@ is probably more appropriate for your setup.
 | WiFi                 | Supported on the Pi Zero W      |
 | Bluetooth            | Not supported yet               |
 
+## Using
+
+The most common way of using this Nerves System is create a project with `mix
+nerves.new` and to export `MIX_TARGET=rpi0`. See the [Getting started
+guide](https://hexdocs.pm/nerves/getting-started.html#creating-a-new-nerves-app)
+for more information.
+
+If you need custom modifications to this system for your device, clone this
+repository and update as described in [Making custom
+systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
+
 ## Console and kernel message configuration
 
 The goal of this image is to use the OTG port for console access. If you're
@@ -36,7 +47,7 @@ the GPIO connector or the HDMI output. This is enabled by updating the
 `cmdline.txt` file. This may be overridden with a custom `fwup.conf` file if
 you don't want to rebuild this system. Add the following to your `cmdline.txt`:
 
-```
+```text
 console=ttyAMA0,115200 console=tty1 ...
 ```
 
