@@ -47,6 +47,10 @@ jobs:
           name: Build
           command: mix compile
       - run:
+          name: "Did I really build"
+          command: |
+            [ -d /nerves/build/.nerves ] || (echo "VERSION file needs to be bumped or a config file needs to change to force a build"; exit 1)
+      - run:
           name: Lint
           command: mix nerves.system.lint nerves_defconfig
       - save_cache:
@@ -83,8 +87,6 @@ jobs:
 
   build_test:
     <<: *defaults
-    artifacts:
-      - "/nerves/build/test/_build/test/nerves/images/"
     working_directory: /nerves/build/test
     steps:
       - restore_cache:
