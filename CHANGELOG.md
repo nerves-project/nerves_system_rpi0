@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.1.0
+
+This release adds official support for provisioning serial numbers to devices.
+Other information can be provisioned in a similar manner. See the README.md for
+details.
+
+Buildroot was also updated to 2018.05. Be sure to review the `nerves_system_br`
+link for the changes in the embedded Linux components.
+
+* Updated dependencies
+  * [nerves_system_br v1.2.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.2.0)
+
+* New features
+  * More `wpa-supplicant` features were enabled to support more WiFi use-cases
+
 ## v1.0.0
 
 This release is nearly identical to rc.1 except for pulling the official 1.0
