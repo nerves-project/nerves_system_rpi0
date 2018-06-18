@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.1.1
+
+This release fixes some issues and adds firmware UUID support. This support can
+be used to unambiguously know what's running on a device.
+
+* Updated dependencies
+  * [nerves_system_br v1.2.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.2.0)
+
+* Bug fixes
+  * Empty serial numbers stored in the U-Boot environment would be used instead
+    of reverting to devices IDs built into the CPU or board.
+  * It wasn't possible to enable QtWebEngine (needed for kiosk apps)
+
 ## v1.1.0
 
 This release adds official support for provisioning serial numbers to devices.
