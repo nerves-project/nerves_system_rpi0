@@ -57,6 +57,9 @@ jobs:
           name: Install dependencies
           command: mix deps.get
       - run:
+          name: Validate Hex package
+          command: mix hex.build
+      - run:
           name: Build
           command: mix compile
       - run:
