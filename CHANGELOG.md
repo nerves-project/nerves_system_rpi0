@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.0
+
+This release upgrades gcc from version 6.3.0 to 7.3.0. See the toolchain release
+notes for more information.
+
+* Updated dependencies
+  * [nerves_system_br v1.4.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.4.1)
+  * [nerves_toolchain_armv6_rpi_linux_gnueabi v1.1.0](https://github.com/nerves-project/toolchains/releases/tag/v1.1.0)
+
 ## v1.2.1
 
 * Updated dependencies
