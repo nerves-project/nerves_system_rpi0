@@ -72,19 +72,21 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp package_files do
     [
+      "fwup_include",
+      "rootfs_overlay",
+      "CHANGELOG.md",
+      "cmdline.txt",
+      "config.txt",
+      "fwup-revert.conf",
+      "fwup.conf",
       "LICENSE",
+      "linux-4.4.defconfig",
       "mix.exs",
       "nerves_defconfig",
-      "README.md",
-      "VERSION",
-      "rootfs_overlay",
-      "fwup.conf",
-      "fwup-revert.conf",
-      "post-createfs.sh",
       "post-build.sh",
-      "cmdline.txt",
-      "linux-4.4.defconfig",
-      "config.txt"
+      "post-createfs.sh",
+      "README.md",
+      "VERSION"
     ]
   end
 
