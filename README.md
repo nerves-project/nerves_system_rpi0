@@ -88,9 +88,9 @@ function.
 
 Keys used by this system are:
 
-Key             | Example Value     | Description
-:-------------- | :---------------- | :----------
-`serial_number` | "1234578"`        | By default, this string is used to create unique hostnames and Erlang node names. If unset, it defaults to part of the Raspberry Pi's device ID.
+Key                    | Example Value     | Description
+:--------------------- | :---------------- | :----------
+`nerves_serial_number` | "1234578"`        | By default, this string is used to create unique hostnames and Erlang node names. If unset, it defaults to part of the Raspberry Pi's device ID.
 
 The normal procedure would be to set these keys once in manufacturing or before
 deployment and then leave them alone.
@@ -99,15 +99,15 @@ For example, to provision a serial number on a running device, run the following
 and reboot:
 
 ```elixir
-iex> cmd("fw_setenv serial_number 1234")
+iex> cmd("fw_setenv nerves_serial_number 1234")
 ```
 
 This system supports setting the serial number offline. To do this, set the
-`SERIAL_NUMBER` environment variable when burning the firmware. If you're
+`NERVES_SERIAL_NUMBER` environment variable when burning the firmware. If you're
 programming MicroSD cards using `fwup`, the commandline is:
 
 ```sh
-sudo SERIAL_NUMBER=1234 fwup path_to_firmware.fw
+sudo NERVES_SERIAL_NUMBER=1234 fwup path_to_firmware.fw
 ```
 
 Serial numbers are stored on the MicroSD card so if the MicroSD card is
@@ -115,6 +115,12 @@ replaced, the serial number will need to be reprogrammed. The numbers are stored
 in a U-boot environment block. This is a special region that is separate from
 the application partition so reformatting the application partition will not
 lose the serial number or any other data stored in this block.
+
+Additional key value pairs can be provisioned by overriding the default 
+provisioning.conf file location by setting the environment variable 
+`NERVES_PROVISIONING=/path/to/provisioning.conf`. The default provisioning.conf
+will set the `nerves_serial_number`, if you override the location to this file,
+you will be responsible for setting this yourself.
 
 ## Linux kernel and RPi firmware/userland
 
