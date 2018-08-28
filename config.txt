@@ -1,4 +1,4 @@
-# Default Nerves RPi0 config.txt
+# Default Nerves RPi0 BLE config.txt
 #
 # It's possible to override this file by using a custom fwup.conf
 # configuration to pull in a replacement.
@@ -28,7 +28,9 @@ dtoverlay=dwc2
 
 # Enable the UART (/dev/ttyAMA0) on the RPi0.
 enable_uart=1
-dtoverlay=pi3-miniuart-bt
+
+# Disable the pi minuartoverlay
+#dtoverlay=pi3-miniuart-bt
 
 # The active LED is active low instead of active high like other Raspberry Pis
 dtparam=act_led_activelow=on
