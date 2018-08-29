@@ -1,7 +1,7 @@
-defmodule NervesSystemRpi0.MixProject do
+defmodule NervesSystemRpi0BLE.MixProject do
   use Mix.Project
 
-  @app :nerves_system_rpi0
+  @app :nerves_system_rpi0_ble
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
@@ -26,7 +26,7 @@ defmodule NervesSystemRpi0.MixProject do
   end
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi0")
+    System.put_env("MIX_TARGET", "rpi0_ble")
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -34,9 +34,9 @@ defmodule NervesSystemRpi0.MixProject do
   defp nerves_package do
     [
       type: :system,
-      artifact_sites: [
-        {:github_releases, "nerves-project/#{@app}"}
-      ],
+      # artifact_sites: [
+      #  {:github_releases, "nerves-project/#{@app}"}
+      # ],
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig"
@@ -63,7 +63,7 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp package do
     [
-      maintainers: ["Timothy Mecklem", "Frank Hunleth"],
+      maintainers: ["Eric Rauer", "Timothy Mecklem", "Frank Hunleth"],
       files: package_files(),
       licenses: ["Apache 2.0"],
       links: %{"Github" => "https://github.com/nerves-project/#{@app}"}
@@ -82,6 +82,7 @@ defmodule NervesSystemRpi0.MixProject do
       "LICENSE",
       "linux-4.4.defconfig",
       "mix.exs",
+      "busybox_defconfig",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",

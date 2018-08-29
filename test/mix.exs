@@ -26,7 +26,7 @@ defmodule Test.MixProject do
   def application, do: []
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi0")
+    System.put_env("MIX_TARGET", "rpi0_ble")
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -34,7 +34,7 @@ defmodule Test.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nerves_system_rpi0, path: "../", runtime: false},
+      {:nerves_system_rpi0_ble, path: "../", runtime: false},
       {:nerves_system_test, github: "nerves-project/nerves_system_test", branch: "poison"}
     ]
   end
