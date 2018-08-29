@@ -1,1 +1,2 @@
 CONFIG_CUT=y
+CONFIG_WC=y
