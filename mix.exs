@@ -10,7 +10,7 @@ defmodule NervesSystemRpi0.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.4",
+      elixir: "~> 1.6",
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
@@ -47,11 +47,11 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp deps do
     [
-      {:nerves, "~> 1.0", runtime: false},
-      {:nerves_system_br, "1.4.5", runtime: false},
+      {:nerves, "~> 1.3", runtime: false},
+      {:nerves_system_br, "1.5.1", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "1.1.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
-      {:ex_doc, "~> 0.18", only: :dev}
+      {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -63,7 +63,7 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp package do
     [
-      maintainers: ["Timothy Mecklem", "Frank Hunleth"],
+      maintainers: ["Frank Hunleth", "Justin Schneck"],
       files: package_files(),
       licenses: ["Apache 2.0"],
       links: %{"Github" => "https://github.com/nerves-project/#{@app}"}
