@@ -14,7 +14,7 @@ defmodule Test.MixProject do
     [
       app: :test,
       version: "0.1.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.6",
       archives: [nerves_bootstrap: "~> 1.0"],
       start_permanent: Mix.env() == :prod,
       aliases: [loadconfig: [&bootstrap/1]],
@@ -35,7 +35,7 @@ defmodule Test.MixProject do
   defp deps do
     [
       {:nerves_system_rpi0, path: "../", runtime: false},
-      {:nerves_system_test, github: "nerves-project/nerves_system_test", branch: "poison"}
+      {:nerves_system_test, github: "nerves-project/nerves_system_test"}
     ]
   end
 end
