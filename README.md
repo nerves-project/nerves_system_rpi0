@@ -30,6 +30,7 @@ appropriate for your setup.
 | Ethernet             | Yes - via OTG USB port          |
 | WiFi                 | Supported on the Pi Zero W      |
 | Bluetooth            | Not supported yet               |
+| Audio                | HDMI/Stereo out                 |
 
 ## Using
 
@@ -78,6 +79,28 @@ over IP.
 The base image includes drivers for the onboard Raspberry Pi Zero W wifi module
 (`brcmfmac` driver). Due to the USB port being placed in gadget mode, this
 system does not support USB WiFi adapters.
+
+## Audio
+
+The Raspberry Pi has many options for audio output. This system supports the
+HDMI and stereo audio jack output. The Linux ALSA drivers are used for audio
+output.
+
+To try it out, run:
+
+```elixir
+:os.cmd('espeak -ven+f5 -k5 -w /tmp/out.wav Hello')
+:os.cmd('aplay -q /tmp/out.wav')
+```
+
+The general Raspberry Pi audio documentation mostly applies to Nerves. For
+example, to force audio out the HDMI port, run:
+
+```elixir
+:os.cmd('amixer cset numid=3 2')
+```
+
+Change the last argument to `amixer` to `1` to output to the stereo output jack.
 
 ## Provisioning devices
 
