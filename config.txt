@@ -5,6 +5,7 @@
 #
 # Useful links:
 # https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
+# https://www.raspberrypi.org/documentation/configuration/device-tree.md
 # https://github.com/raspberrypi/documentation/blob/master/configuration/device-tree.md
 
 kernel=zImage
@@ -17,8 +18,10 @@ disable_splash=1
 # configuration. See Target packages->Hardware handling->Firmware.
 gpu_mem=192
 
-# Enable I2C and SPI
-dtparam=i2c_arm=on,spi=on
+# Enable I2C, SPI, and audio
+dtparam=i2c_arm=on
+dtparam=spi=on
+dtparam=audio=on
 
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
