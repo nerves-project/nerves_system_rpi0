@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.5.1
+
+* Updated dependencies
+  * [nerves_system_br v1.5.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.5.3)
+
 ## v1.5.0
 
 This release updates the Linux kernel from 4.4 to 4.14.71.
