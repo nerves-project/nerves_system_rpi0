@@ -10,6 +10,11 @@ app_part_devparth = "/dev/mmcblk0p3"
 network_interface = System.get_env("NERVES_NETWORK_INTERFACE") || "wlan0"
 
 # Environment specific configuration
+#  NervesHub keys
+
+config :nerves_hub,
+  public_keys: [System.get_env("NERVES_HUB_FW_PUBLIC_KEY")]
+
 #  Nerves Project test farm configuration
 #  NERVES_TEST_SERVER = nerves-test-server.herokuapp.com
 #  WEBSOCKET_PROTOCOL = wss
