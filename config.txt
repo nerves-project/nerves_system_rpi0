@@ -29,6 +29,10 @@ dtparam=audio=on
 #dtoverlay=w1-gpio-pullup,gpiopin=4
 dtoverlay=dwc2
 
+# The ramoops overlay works with the pstore driver to preserve crash
+# information across reboots in DRAM
+dtoverlay=ramoops
+
 # Enable the UART (/dev/ttyAMA0) on the RPi0.
 enable_uart=1
 dtoverlay=pi3-miniuart-bt
