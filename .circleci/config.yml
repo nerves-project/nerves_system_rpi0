@@ -35,6 +35,13 @@ install_aws_cli: &install_aws_cli
       apt update -qq
       apt install awscli -qq -y
 
+install_jq: &install_jq
+  run:
+    name: Install jq
+    command : |
+      apt update -qq
+      apt install jq -qq -y
+
 install_ghr: &install_ghr
   run:
     name: Install ghr (Github Releases)
@@ -50,9 +57,18 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - <<: *install_jq
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
+      - run:
+          name: "Set Buildroot primary site"
+          command: |
+            PRIMARY_SITE=$(.circleci/scripts/primary-site.sh dl)
+            if [ -n "$PRIMARY_SITE" ]; then
+              echo "BR2_PRIMARY_SITE=$PRIMARY_SITE"
+              echo 'export BR2_PRIMARY_SITE='"$PRIMARY_SITE" >> $BASH_ENV
+            fi
       - run:
           name: Install dependencies
           command: mix deps.get
