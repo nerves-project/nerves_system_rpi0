@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.6.0
+
+This pulls in a pending patch in Buildroot to update the version of
+OpenSSL from 1.0.2 to 1.1.0h. This fixes what appears to be issues with
+Erlang using OpenSSL engines. It also enables Erlang crypto algorithms
+such as ed25519 that have been added in recent Erlang releases.
+
+* Updated dependencies
+  * [nerves_system_br v1.6.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.6.1)
+  * Erlang 21.2
+* Added dependencies
+  * wpa_passphrase
+  * libp11 0.4.9
+
 ## v1.5.1
 
 * Updated dependencies
