@@ -88,6 +88,9 @@ jobs:
       - store_artifacts:
           path: /nerves/deploy/system/artifacts
           destination: system
+      - store_artifacts:
+          path: /root/.nerves/dl
+          destination: dl
       - save_cache:
           key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
           paths:
