@@ -27,7 +27,7 @@ appropriate for your setup.
 | PWM                  | Yes, but no Elixir support      |
 | UART                 | 1 available - `ttyAMA0`         |
 | Camera               | Yes - via rpi-userland          |
-| Ethernet             | Yes - via OTG USB port          |
+| Ethernet             | No                              |
 | WiFi                 | Supported on the Pi Zero W      |
 | Bluetooth            | Not supported yet               |
 | Audio                | HDMI/Stereo out                 |
