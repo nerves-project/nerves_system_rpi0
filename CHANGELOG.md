@@ -1,5 +1,21 @@
 # Changelog
 
+## vNEXT
+
+* Breaking Changes
+  * USB Gadget devices (`ttyGS0` and `usb0`) are no longer compiled into the
+    Linux kernel, but rather as a kernel module ([#62]). This module is loaded
+    automatically using the `--pre-run-exec` option in `erlinit.config`, but if
+    you are overriding this file via `rootfs_overlay`, you will need to either
+    update your `erlinit.config` to pre-load this module, or define your own
+    USB gadget devices with the [`usb_gadget`] library.
+
+* Enhancements
+  * Ethernet bonding support is now included by default
+
+[#62]: https://github.com/nerves-project/nerves_system_rpi0/pull/62
+[`usb_gadget`]: https://github.com/nerves-project/usb_gadget
+
 ## v1.6.0
 
 This pulls in a pending patch in Buildroot to update the version of

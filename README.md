@@ -67,12 +67,33 @@ If you'd like the IEx prompt to come out the UART pins (`ttyAMA0`) or HDMI
 
 ## Supported OTG USB modes
 
-The base image activates the `dwc2` overlay, which allows the Pi Zero to appear
-as a device (aka gadget mode). When plugged into a host computer via the OTG
-port, the Pi Zero will appear as a composite Ethernet and serial device. The
-virtual serial port provides access to the IEx prompt and the Ethernet device
-can be used for firmware updates, Erlang distribution, and anything else running
-over IP.
+The base image activates the `dwc2` overlay and exposes a `usb_gadget` ConfigFS
+interface, which allows the Pi Zero to be configured to appear as a device (aka
+gadget mode) when plugged into a host computer via the OTG port. Gadget devices can be configured one of two ways:
+
+1. Pre-compiled kernel module (`g_cdc`)
+
+  The default method is to use a pre-compiled kernel module that, when loaded,
+  causes the Pi Zero to appear as a composite of an Ethernet device and a
+  serial device. The virtual serial port provides access to the IEx prompt and
+  the Ethernet device can be used for firmware updates, Erlang distribution,
+  and anything else running over IP. From the Raspberry Pi's perspective, these
+  devices are called `ttyGS0` (serial) and `usb0` (Ethernet).
+
+  This module is loaded by default as a `--pre-run-exec` option in the
+  `erlinit.config` file. If you would like to manage this from inside your
+  supervision tree instead, you can remove it from `erlinit.config` and instead
+  call `:os.cmd('modproce g_cdc')` to load it at runtime.
+
+2. Dynamically with ConfigFS (using [`usb_gadget`])
+
+  The other option is to configure custom gadget devices using the
+  [`usb_gadget]` library. If you choose to use this option, you can either
+  remove the call to load the kernel module from a [customized
+  `erlinit.config`] file, or call `:os.cmd('rmmod g_cdc')` to disable it before
+  enabling the `usb_gadget`-based device(s).
+
+[`usb_gadget`]: https://github.com/nerves-project/usb_gadget
 
 ## Supported WiFi devices
 
