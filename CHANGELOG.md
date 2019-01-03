@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.6.1
+
+This release has moves the board identification logic out of erlinit.config.
+This is an optional change if you have a custom Nerves system, but it does make
+calling `boardid` easier if you need to get hardware-specific serial numbers.
+
+The other main change is to enable the Linux `pstore`. This driver allows you to
+capture diagnostic information across reboots. For example, if the watchdog
+triggers and reboots the board, it's now possible to see the final log messages.
+The files are stored in `/sys/fs/pstore`. The pstore configuration is currently
+barebones.
+
+* Updated dependencies
+  * [nerves_system_br v1.6.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.6.4)
+  * Erlang 21.2.2
+  * Linux 4.14.89
+
 ## v1.6.0
 
 This pulls in a pending patch in Buildroot to update the version of
