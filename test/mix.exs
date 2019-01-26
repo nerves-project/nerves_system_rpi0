@@ -26,7 +26,7 @@ defmodule Test.MixProject do
   def application, do: []
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi0")
+    set_target()
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -37,5 +37,13 @@ defmodule Test.MixProject do
       {:nerves_system_rpi0, path: "../", runtime: false},
       {:nerves_system_test, github: "nerves-project/nerves_system_test"}
     ]
+  end
+
+  defp set_target() do
+    if function_exported?(Mix, :target, 1) do
+      apply(Mix, :target, [:target])
+    else
+      System.put_env("MIX_TARGET", "target")
+    end
   end
 end
