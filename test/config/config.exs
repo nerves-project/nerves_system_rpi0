@@ -57,7 +57,7 @@ config :nerves_network, :default,
   ]
 
 # Configure the url for the connection to the test server phoenix channel socket.
-config :nerves_system_test, NervesTestServer.Socket,
+config :nerves_system_test, :socket,
   url: "#{websocket_protocol}://#{test_server}/socket/websocket"
 
 # Configure the test suite. nerves_system_test needs to know information such as

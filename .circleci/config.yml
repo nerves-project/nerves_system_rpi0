@@ -124,6 +124,7 @@ jobs:
           command: |
             mkdir -p ~/.nerves/dl
             cp /nerves/deploy/system/artifacts/*.gz ~/.nerves/dl
+      - <<: *install_jq
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
