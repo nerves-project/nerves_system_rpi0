@@ -6,6 +6,7 @@ defaults: &defaults
     ENV: CI
     MIX_ENV: test
     ELIXIR_VERSION: 1.8.0-otp-21
+    NERVES_TEST_TAGS: "rpi rpi0"
 
 install_elixir: &install_elixir
   run:
@@ -153,7 +154,7 @@ jobs:
           name: Create build context
           command: |
             cd test
-            ../.circleci/scripts/build-context.sh /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json
+            ../.circleci/scripts/build-context.sh /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json "$NERVES_TEST_TAGS"
       - store_artifacts:
           path: /nerves/deploy/test/artifacts
           destination: test
