@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.3
+
+* Updated dependencies
+  * [nerves_system_br v1.6.8](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.6.8)
+  * Erlang 21.2.6
+
 ## v1.6.2
 
 * Updated dependencies
