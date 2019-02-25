@@ -5,7 +5,7 @@ defaults: &defaults
   environment:
     ENV: CI
     MIX_ENV: test
-    ELIXIR_VERSION: 1.8.0-otp-21
+    ELIXIR_VERSION: 1.8.1-otp-21
 
 install_elixir: &install_elixir
   run:
