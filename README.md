@@ -20,7 +20,7 @@ appropriate for your setup.
 | CPU                  | 1 GHz ARM1176JZF-S              |
 | Memory               | 512 MB                          |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.14 w/ Raspberry Pi patches    |
+| Linux kernel         | 4.19 w/ Raspberry Pi patches    |
 | IEx terminal         | OTG USB serial port (`ttyGS0`). Can be changed to HDMI or UART. |
 | GPIO, I2C, SPI       | Yes - [Elixir Circuits](https://github.com/elixir-circuits) |
 | ADC                  | No                              |
