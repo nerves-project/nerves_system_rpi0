@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.7.1
+
+This release fixes a major issue with the gadget USB port where it would hang on
+boot. If you have made a custom system or are overriding the `erlinit.config`
+file in your project, please make sure that your `erlinit.config` has:
+
+```text
+-c null
+-s "/usr/bin/nbtty --tty /dev/ttyGS0 --wait-input"
+```
+
+* Bug fixes
+  * Fix regression with virtual serial port where it could cause the whole USB
+    interface to hang.
+
+* Improvements
+  * Bump C compiler options to `-O2` from `-Os`. This provides a small, but
+    measurable performance improvement (500ms at boot in a trivial project).
+
+* Updated dependencies
+  * [nerves_system_br v1.7.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.7.1)
+
 ## v1.7.0
 
 This release bumps the Linux kernel to 4.19.25. This change had an impact on how
