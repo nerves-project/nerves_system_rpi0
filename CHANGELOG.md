@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.7.2
+
+* Bux fixes
+  * Add TAR option `--no-same-owner` to fix errors when untarring artifacts as
+    the root user.
+* Updated dependencies
+  * [nerves_system_br v1.7.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.7.2)
+
 ## v1.7.1
 
 This release fixes a major issue with the gadget USB port where it would hang on
