@@ -1,11 +1,11 @@
 defaults: &defaults
   working_directory: /nerves/build
   docker:
-    - image: nervesproject/nerves_system_br:1.7.2
+    - image: nervesproject/nerves_system_br:1.8.0
   environment:
     ENV: CI
     MIX_ENV: test
-    ELIXIR_VERSION: 1.8.1-otp-21
+    ELIXIR_VERSION: 1.8.2-otp-22
 
 install_elixir: &install_elixir
   run:
