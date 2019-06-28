@@ -1,5 +1,10 @@
 # Changelog
 
+## vNEXT
+
+* Enhancements
+  * UART communication with the Bluetooth module works by default on `ttyAMA0`
+
 ## v1.7.2
 
 * Bux fixes
