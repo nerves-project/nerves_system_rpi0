@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.8.0
+
+This release
+
+This release updates Erlang to OTP 22 and gcc from version 7.3.0 to 8.3.0.
+See the nerves_system_br and toolchain release notes for more information.
+
+* Enhancements
+  * Enable source-based routing in the Linux kernel to support [vintage_net](https://github.com/nerves-networking/vintage_net)
+
+* Updated dependencies
+  * Erlang 22.0.4
+  * [nerves_system_br v1.8.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.8.2)
+  * [nerves_toolchain_arm_unknown_linux_gnueabihf v1.2.0](https://github.com/nerves-project/toolchains/releases/tag/v1.2.0)
+
 ## v1.7.2
 
 * Bux fixes
