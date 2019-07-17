@@ -10,15 +10,19 @@ end
 defmodule Test.MixProject do
   use Mix.Project
 
+  @app :test
+
   def project do
     [
-      app: :test,
+      app: @app,
+      name: "system-test",
       version: "0.1.0",
-      elixir: "~> 1.6",
-      archives: [nerves_bootstrap: "~> 1.0"],
+      elixir: "~> 1.9",
+      archives: [nerves_bootstrap: "~> 1.6"],
       start_permanent: Mix.env() == :prod,
       aliases: [loadconfig: [&bootstrap/1]],
-      deps: deps()
+      deps: deps(),
+      releases: [{@app, release()}]
     ]
   end
 
@@ -26,7 +30,7 @@ defmodule Test.MixProject do
   def application, do: []
 
   defp bootstrap(args) do
-    set_target()
+    Mix.target(:target)
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -35,15 +39,17 @@ defmodule Test.MixProject do
   defp deps do
     [
       {:nerves_system_rpi0, path: "../", runtime: false},
-      {:nerves_system_test, github: "nerves-project/nerves_system_test"}
+      {:shoehorn, "~> 0.6"},
+      {:nerves_test_client, github: "mobileoverlord/nerves_test_client"}
     ]
   end
 
-  defp set_target() do
-    if function_exported?(Mix, :target, 1) do
-      apply(Mix, :target, [:target])
-    else
-      System.put_env("MIX_TARGET", "target")
-    end
+  def release do
+    [
+      overwrite: true,
+      cookie: "#{@app}_cookie",
+      include_erts: &Nerves.Release.erts/0,
+      steps: [&Nerves.Release.init/1, :assemble, &ExUnitRelease.include/1]
+    ]
   end
 end
