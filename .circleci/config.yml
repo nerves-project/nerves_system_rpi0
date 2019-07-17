@@ -1,215 +1,42 @@
-defaults: &defaults
-  working_directory: /nerves/build
-  docker:
-    - image: nervesproject/nerves_system_br:1.8.4
-  environment:
-    ENV: CI
-    MIX_ENV: test
-    ELIXIR_VERSION: 1.9.0-otp-22
+exec: &exec
+  name: build-tools/nerves-system-br
+  version: 1.8.4
+  elixir: 1.9.0-otp-22
 
-install_elixir: &install_elixir
-  run:
-    name: Install Elixir
-    command: |
-      wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
-      unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
-      echo 'export PATH=/usr/local/elixir/bin:$PATH' >> $BASH_ENV
+version: 2.1
 
-install_hex_rebar: &install_hex_rebar
-  run:
-    name: Install hex and rebar
-    command: |
-      mix local.hex --force
-      mix local.rebar --force
-
-install_nerves_bootstrap: &install_nerves_bootstrap
-  run:
-    name: Install nerves_bootstrap
-    command: |
-      mix archive.install hex nerves_bootstrap "~> 1.0" --force
-
-install_aws_cli: &install_aws_cli
-  run:
-    name: Install AWS CLI
-    command : |
-      apt update -qq
-      apt install awscli -qq -y
-
-install_jq: &install_jq
-  run:
-    name: Install jq
-    command : |
-      apt update -qq
-      apt install jq -qq -y
-
-install_ghr: &install_ghr
-  run:
-    name: Install ghr (Github Releases)
-    command: |
-      wget https://github.com/tcnksm/ghr/releases/download/v0.9.0/ghr_v0.9.0_linux_amd64.tar.gz
-      tar xf ghr_v0.9.0_linux_amd64.tar.gz
-      ln -sf ghr_v0.9.0_linux_amd64/ghr .
-
-version: 2.0
-
-jobs:
-  build_system:
-    <<: *defaults
-    steps:
-      - checkout
-      - <<: *install_jq
-      - <<: *install_elixir
-      - <<: *install_hex_rebar
-      - <<: *install_nerves_bootstrap
-      - run:
-          name: "Set Buildroot primary site"
-          command: |
-            PRIMARY_SITE=$(.circleci/scripts/primary-site.sh dl)
-            if [ -n "$PRIMARY_SITE" ]; then
-              echo "BR2_PRIMARY_SITE=$PRIMARY_SITE"
-              echo 'export BR2_PRIMARY_SITE='"$PRIMARY_SITE" >> $BASH_ENV
-            fi
-      - run:
-          name: Install dependencies
-          command: mix deps.get
-      - run:
-          name: Validate Hex package
-          command: mix hex.build
-      - run:
-          name: Build
-          command: mix compile
-      - run:
-          name: Did I really build
-          command: |
-            [ -d /nerves/build/.nerves ] || (echo "VERSION file needs to be bumped or a config file needs to change to force a build"; exit 1)
-      - run:
-          name: Lint
-          command: mix nerves.system.lint nerves_defconfig
-      - run:
-          name: Create artifact dir
-          command: mkdir -p /nerves/deploy/system/artifacts
-      - run:
-          name: Copy CHANGELOG
-          command: cp ./CHANGELOG.md /nerves/deploy/system/CHANGELOG.md
-
-      - run:
-          name: Create artifacts
-          command: |
-            if [ -n "$CIRCLE_TAG" ]; then
-              TAG=$CIRCLE_TAG
-            else
-              TAG=$CIRCLE_SHA1
-            fi
-            mix nerves.artifact ${CIRCLE_PROJECT_REPONAME} --path /nerves/deploy/system/artifacts
-      - store_artifacts:
-          path: /nerves/deploy/system/artifacts
-          destination: system
-      - store_artifacts:
-          path: /root/.nerves/dl
-          destination: dl
-      - save_cache:
-          key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-          paths:
-            - "/nerves/deploy/system"
-
-  build_test:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-      - run:
-          name: Copy artifacts
-          command: |
-            mkdir -p ~/.nerves/dl
-            cp /nerves/deploy/system/artifacts/*.gz ~/.nerves/dl
-      - <<: *install_jq
-      - <<: *install_elixir
-      - <<: *install_hex_rebar
-      - <<: *install_nerves_bootstrap
-      - run:
-          name: Install test dependencies
-          command: |
-            cd test
-            mix deps.get
-      - run:
-          name: Create test firmware
-          command: |
-            cd test
-            mix firmware
-      - run:
-          name: Sign firmware
-          command: |
-            cd test
-            mix nerves_hub.firmware sign --key test
-      - run:
-          name: Publish to NervesHub
-          command: |
-            cd test
-            mix nerves_hub.firmware publish --ttl 3600
-      - run:
-          name: Create artifact dir
-          command: mkdir -p /nerves/deploy/test/artifacts
-      - run:
-          name: Create build context
-          command: |
-            cd test
-            ../.circleci/scripts/build-context.sh /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json
-      - run:
-          name: Copy artifact
-          command: cp /nerves/build/test/_build/target_test/nerves/images/test.fw /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.fw
-      - store_artifacts:
-          path: /nerves/deploy/test/artifacts
-          destination: test
-      - save_cache:
-          key: nerves/deploy/test-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-          paths:
-            - "/nerves/deploy/test"
-
-  deploy_test:
-    <<: *defaults
-    steps:
-      - <<: *install_aws_cli
-      - restore_cache:
-          key: nerves/deploy/test-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-      - deploy:
-          name: Publish notification on SNS
-          command: aws sns publish --topic-arn $AWS_SNS_TOPIC_ARN --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
-
-  deploy_system:
-    <<: *defaults
-    steps:
-      - restore_cache:
-          key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-      - <<: *install_ghr
-      - run:
-          name: Create release notes
-          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" /nerves/deploy/system/CHANGELOG.md | sed '/./,$!d' > /nerves/deploy/system/RELEASE_NOTES
-      - run:
-          name: Deploy artifacts to Github
-          command: ./ghr -draft -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -b "$(cat /nerves/deploy/system/RELEASE_NOTES)" -replace $CIRCLE_TAG /nerves/deploy/system/artifacts
+orbs:
+  build-tools: nerves-project/build-tools@0.1.2
 
 workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - build_system:
+      - build-tools/build-system:
+          exec:
+            <<: *exec
           context: org-global
           filters:
             tags:
               only: /.*/
-      - build_test:
+      - build-tools/build-test:
+          exec:
+            <<: *exec
           context: org-global
           requires:
-            - build_system
-      - deploy_test:
+            - build-tools/build-system
+      - build-tools/deploy-test:
+          exec:
+            <<: *exec
           context: org-global
           requires:
-            - build_test
-      - deploy_system:
+            - build-tools/build-test
+      - build-tools/deploy-system:
+          exec:
+            <<: *exec
           context: org-global
           requires:
-            - build_system
+            - build-tools/build-system
           filters:
             branches:
               ignore: /.*/
