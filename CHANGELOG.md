@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.8.1
+
+* Updated dependencies
+  * [nerves_system_br v1.8.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.8.4)
+  * Linux 4.19.58 with patches from the Raspberry Pi Foundation
+
 ## v1.8.0
 
 This release
