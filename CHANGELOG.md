@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.8.2
+
+This release fixes an issue that broke display output on small LCD screens.
+Updating the Raspberry Pi firmware to the latest from the Raspberry Pi
+Foundation fixed the issue. See
+https://github.com/fhunleth/rpi_fb_capture/issues/2 for details.
+
+* Updated dependencies
+  * [nerves_system_br v1.8.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.8.5)
+
 ## v1.8.1
 
 * Updated dependencies
