@@ -89,15 +89,15 @@ output.
 To try it out, run:
 
 ```elixir
-:os.cmd('espeak -ven+f5 -k5 -w /tmp/out.wav Hello')
-:os.cmd('aplay -q /tmp/out.wav')
+cmd("espeak -ven+f5 -k5 -w /tmp/out.wav Hello")
+cmd("aplay -q /tmp/out.wav")
 ```
 
 The general Raspberry Pi audio documentation mostly applies to Nerves. For
 example, to force audio out the HDMI port, run:
 
 ```elixir
-:os.cmd('amixer cset numid=3 2')
+cmd("amixer cset numid=3 2")
 ```
 
 Change the last argument to `amixer` to `1` to output to the stereo output jack.
@@ -220,7 +220,7 @@ configuration found here, do the following (this is somewhat tedious):
     type (i.e., no Mac partition support, etc.).
 1. In `Enable loadable module support`, select "Trim unused exported kernel
     symbols". NOTE: If you're having trouble with an out-of-tree kernel module
-    build, try deslecting this!!
+    build, try deselecting this!!
 1. In `General Setup`, turn off `initramfs/initfd` support, Kernel .config
    support, OProfile.
 1. In `Device Drivers -> I2C -> Hardware Bus Support` compile the module into
