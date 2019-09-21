@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.9.0
+
+This release updates Buildroot to 2019.08 with security and bug fix updates
+across Linux packages. See the `nerves_system_br` notes for details.
+
+* Updated dependencies
+  * [nerves_system_br v1.9.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.9.2)
+
 ## v1.8.2
 
 This release fixes an issue that broke display output on small LCD screens.
