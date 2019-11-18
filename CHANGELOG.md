@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.9.2
+
+This release updates Buildroot to 2019.08.2 with security and bug fix updates
+across Linux packages. See the `nerves_system_br` notes for details.
+Erlang/OTP is now at 22.1.7.
+
+* Updated dependencies
+  * [nerves_system_br v1.9.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.9.5)
+
 ## v1.9.1
 
 This release pulls in security and bug fix updates from `nerves_system_br`.
