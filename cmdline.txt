@@ -1,4 +1,11 @@
 # NOTES:
-# 1. If you need kernel debug prints, add "console=serial0,115200" for the
-#    UART or "console=tty1" for the HDMI port.
-root=/dev/mmcblk0p2 rootwait
+# 1. Kernel messages are output via the UART pins.
+#    serial0 is magically replaced with ttyAMA0 or ttyS0 depending on the
+#    serial port configuration in config.txt.
+# 2. To output kernel messages over HDMI, add
+#    "console=tty1 fbcon=scrollback:1024k consoleblank=0"
+#    https://www.raspberrypi.org/documentation/configuration/cmdline-txt.md
+# 3. If you're experimenting with kernel commandline parameters, it's easist
+#    to modify this file on the MicroSD card via your development computer. To
+#    make changes permanent, you'll need to override the fwup.conf.
+root=/dev/mmcblk0p2 rootwait console=serial0,115200 quiet
