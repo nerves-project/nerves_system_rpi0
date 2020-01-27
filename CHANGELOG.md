@@ -1,10 +1,30 @@
 # Changelog
 
+## v1.10.1
+
+This release changes the behavior of the gadget port as well as the UART pins
+on the GPIO header. The gadget driver has been changed to use g_ether. This
+provides a more stable network connection at the expense of the virtual serial
+port. Console access has been output to the UART. If you were using the UART
+to connect to peripherals, you will need to disable the console.
+See: https://hexdocs.pm/nerves/advanced-configuration.html#overwriting-files-in-the-boot-partition
+for more information.
+
+* Enhancements
+  * Set `expand=true` on the application data partition. This will only take
+    effect for users running the complete task, fwup will not expand application
+    data partitions that exist during upgrade tasks.
+  * linux: swap the cdc composite gadget for g_ether
+
+* Updated dependencies
+  * [nerves_system_br v1.10.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.10.1)
+  * Erlang 22.2.3
+
 ## v1.10.0
 
 This release updates Buildroot to 2019.11 with security and bug fix updates
-across Linux packages. Enables dnsd, udhcpd and ifconfig in the default 
-Busybox configuration to support `vintage_net` and `vintage_net_wizard`. 
+across Linux packages. Enables dnsd, udhcpd and ifconfig in the default
+Busybox configuration to support `vintage_net` and `vintage_net_wizard`.
 See the `nerves_system_br` notes for details.
 
 * Updated dependencies
