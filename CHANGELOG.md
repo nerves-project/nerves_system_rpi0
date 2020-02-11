@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.10.2
+
+* Fixes
+  * This fixes a regression on OSX where the USB gadget Ethernet would
+    incorrectly try to go into RNDIS mode and not work. Gadget Ethernet works
+    with this fix on Linux and OSX. It also works on Windows with a driver
+    installed. See the README.md for details.
+
+* Updated dependencies
+  * [nerves_system_br v1.10.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.10.2)
+  * Erlang 22.2.4
+
 ## v1.10.1
 
 This release changes the behavior of the gadget port as well as the UART pins
