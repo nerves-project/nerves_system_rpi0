@@ -50,29 +50,36 @@ will get you started with the basics like bringing up the virtual Ethernet
 interface, initializing the writable application data partition, and enabling
 ssh-based firmware updates.
 
+## USB OTG support
+
+One of the goals of this system is to make it possible to do most development
+via one USB cable. That cable, when plugged into the USB OTG port, powers the
+Raspberry Pi Zero and provides local networking. Via the network connection, one
+can access an IEx prompt via ssh, transfer files via sftp, run firmware updates,
+use Erlang distribution and anything else that works over IP.
+
+IMPORTANT: The Raspberry Pi Zero has two USB ports. The OTG one is the "middle"
+one. The other one is power-only.
+
+When you connect the USB OTG port to your laptop, it should "just" work if
+you're using OSX or Linux. If you're on Windows and want to access networking
+natively (not through a Linux VM), you will need to install
+[`linux.inf`](https://elixir.bootlin.com/linux/v4.19.102/source/Documentation/usb/linux.inf).
+This file is unsigned and will fail to install unless you disable signed driver
+enforcement. The basic idea is to go to settings, go to the advanced boot
+settings and navigate the menus to boot with it off. There are examples on the
+web.
+
 ## Console and kernel message configuration
 
-The goal of this image is to use the OTG port for console access. If you're
-debugging the boot process, you'll want to use the Raspberry Pi's UART pins on
-the GPIO connector or the HDMI output. This is enabled by updating the
-`cmdline.txt` file. This may be overridden with a custom `fwup.conf` file if you
-don't want to rebuild this system. Add the following to your `cmdline.txt`:
+If you're debugging networking or the boot process, you'll want to use the
+Raspberry Pi's UART pins on the GPIO connector (the HDMI output can be made to
+work, but won't be a good development experience).
 
-```text
-console=ttyAMA0,115200 console=tty1 ...
-```
-
-If you'd like the IEx prompt to come out the UART pins (`ttyAMA0`) or HDMI
-(`tty1`), then modify `rootfs_overlay/etc/erlinit.config` as well.
-
-## Supported OTG USB modes
-
-The base image activates the `dwc2` overlay, which allows the Pi Zero to appear
-as a device (aka gadget mode). When plugged into a host computer via the OTG
-port, the Pi Zero will appear as a composite Ethernet and serial device. The
-virtual serial port provides access to the IEx prompt and the Ethernet device
-can be used for firmware updates, Erlang distribution, and anything else running
-over IP.
+You will need to use a USB-to-UART adapter and connect it to the UART pins on
+the Raspberry Pi's GPIO header. Make sure to use a USB-to-UART adapter with 3.3V
+logic levels. This is most of them and to make things confusing, most adapters
+can supply 5V. Just don't connect the 5V wire.
 
 ## Supported WiFi devices
 
