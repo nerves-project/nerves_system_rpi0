@@ -43,13 +43,6 @@ If you need custom modifications to this system for your device, clone this
 repository and update as described in [Making custom
 systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
 
-If you're new to Nerves, check out the
-[nerves_init_gadget](https://github.com/nerves-project/nerves_init_gadget)
-project for creating a starter project for the Raspberry Pi Zero or Zero W. It
-will get you started with the basics like bringing up the virtual Ethernet
-interface, initializing the writable application data partition, and enabling
-ssh-based firmware updates.
-
 ## USB OTG support
 
 One of the goals of this system is to make it possible to do most development
@@ -163,14 +156,6 @@ kernel version used here. `nerves_system_br` provides the versions of
 the Linux kernel to avoid any issues. Unfortunately, none of these are tagged by
 the Raspberry Pi Foundation so I either attempt to match what's in Raspbian or
 take versions of the repositories that have similar commit times.
-
-## Installation
-
-If you're new to Nerves, check out the
-[nerves_init_gadget](https://github.com/fhunleth/nerves_init_gadget) project for
-creating a starter project for the Raspberry Pi Zero or Zero W. It will get you
-started with the basics like bringing up the virtual Ethernet interface,
-initializing the application partition, and enabling ssh-based firmware updates.
 
 ## Linux kernel configuration notes
 
