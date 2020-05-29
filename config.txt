@@ -11,6 +11,9 @@
 
 kernel=zImage
 
+# Enable initramfs for auto-reverts
+initramfs nerves_initramfs followkernel
+
 # Disable the boot rainbow
 disable_splash=1
 

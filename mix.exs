@@ -100,6 +100,7 @@ defmodule NervesSystemRpi0.MixProject do
       "linux-4.19.defconfig",
       "mix.exs",
       "nerves_defconfig",
+      "nerves_initramfs.conf",
       "post-build.sh",
       "post-createfs.sh",
       "ramoops.dts",
