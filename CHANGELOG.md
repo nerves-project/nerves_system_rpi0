@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.12.0
+
+This release updates the system to use Buildroot 2020.05 and Erlang/OTP 23.
+Please see the respective release notes for updates and deprecations in both
+projects for changes that may affect your application.
+
+* Updated dependencies
+  * [nerves_system_br v1.12.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.12.0)
+  * [Erlang/OTP 23.0.2](https://erlang.org/download/OTP-23.0.2.README)
+  * [Linux 4.19.118 (Raspberry Pi 1.2020601 tag)](https://github.com/raspberrypi/linux/tree/raspberrypi-kernel_1.20200601-1)
+  * [Raspberry Pi firmware 1.2020601](https://github.com/raspberrypi/firmware/tree/1.20200601)
+
 ## v1.11.2
 
 * Updated dependencies
