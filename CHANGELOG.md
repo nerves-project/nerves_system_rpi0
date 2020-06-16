@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.12.1
+
+* Fixes
+  * Remove `nerves_system_linter` from hex package. This fixes mix dependency
+    errors in projects that reference systems with different
+    `nerves_system_linter` dependency specs.
+
 ## v1.12.0
 
 This release updates the system to use Buildroot 2020.05 and Erlang/OTP 23.
