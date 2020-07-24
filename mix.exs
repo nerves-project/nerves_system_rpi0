@@ -23,12 +23,15 @@ defmodule NervesSystemRpi0.MixProject do
   end
 
   def application do
+    check_rpi_v2_ack!()
     []
   end
 
   defp bootstrap(args) do
     set_target()
     Application.start(:nerves_bootstrap)
+    # We're compiling locally so ack v2 req
+    Application.put_env(:nerves, :rpi_v2_ack, true)
     Mix.Task.run("loadconfig", args)
   end
 
@@ -111,6 +114,42 @@ defmodule NervesSystemRpi0.MixProject do
       apply(Mix, :target, [:target])
     else
       System.put_env("MIX_TARGET", "target")
+    end
+  end
+
+  defp check_rpi_v2_ack!() do
+    acked? = Application.get_env(:nerves, :rpi_v2_ack) || System.get_env("NERVES_RPI_V2_ACK")
+
+    unless acked? do
+      Mix.raise("""
+
+
+      You are using #{@app} >= 2.0.0 which is technically
+      backwards compatible, but requires one manual step if
+      you are attempting to update the firmware on an existing
+      device via ssh, upload script, NervesHub, or other remote
+      firmware update procedure.
+
+      You will need to validate the running firmware on the
+      device before installing a firmware built with this system.
+      Otherwise, you will get an unexpected and misleading fwup error.
+
+      To validate and avoid the fwup error, run:
+
+        Nerves.Runtime.validate_firmware()
+
+      Or if using :nerves_runtime < 0.11.2, run:
+
+        Nerves.Runtime.KV.put("nerves_fw_validated", "1")
+
+      If you are burning the firmware directly to a SD card, then
+      nothing needs to be done.
+
+      To allow compilation to complete, acknowledge you have read
+      this warning by adding this line to your `config.exs`:
+
+        config :nerves, rpi_v2_ack: true
+      """)
     end
   end
 end
