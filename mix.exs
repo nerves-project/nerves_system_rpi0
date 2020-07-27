@@ -18,7 +18,12 @@ defmodule NervesSystemRpi0.MixProject do
       package: package(),
       deps: deps(),
       aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
-      docs: [extras: ["README.md"], main: "readme"]
+      docs: [extras: ["README.md"], main: "readme"],
+      preferred_cli_env: %{
+        docs: :docs,
+        "hex.build": :docs,
+        "hex.publish": :docs
+      }
     ]
   end
 
@@ -56,7 +61,7 @@ defmodule NervesSystemRpi0.MixProject do
       {:nerves_system_br, "1.12.2", runtime: false},
       {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 1.3.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
