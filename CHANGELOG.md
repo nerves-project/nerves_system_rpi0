@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.13.0
+
+This release updates to [Buildroot
+2020.08](http://lists.busybox.net/pipermail/buildroot/2020-September/290797.html) and OTP 23.1.1.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.2)
+  * [Erlang/OTP 23.1.1](https://erlang.org/download/OTP-23.1.1.README)
+  * [erlinit 1.8.0](https://github.com/nerves-project/erlinit/releases/tag/v1.8.0)
+  * [nerves 1.7.0](https://github.com/nerves-project/nerves/releases/tag/v1.7.0)
+
+* New features
+  * Added support for updating the root filesystem using firmware patches.
+    See the [firmware patch docs](https://hexdocs.pm/nerves/experimental-features.html#content) for more information.
+
 ## v1.12.2
 
 This release updates to [Buildroot
