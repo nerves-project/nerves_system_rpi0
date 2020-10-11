@@ -8,4 +8,4 @@
 # 3. If you're experimenting with kernel commandline parameters, it's easist
 #    to modify this file on the MicroSD card via your development computer. To
 #    make changes permanent, you'll need to override the fwup.conf.
-root=/dev/mmcblk0p2 rootwait console=serial0,115200 quiet
+root=/dev/mmcblk0p2 rootwait console=serial0,115200 quiet modules-load=dwc2,g_ipod_gadget

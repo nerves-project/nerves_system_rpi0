@@ -88,6 +88,15 @@ defmodule IpodGadgetRpi0.MixProject do
   end
 
   defp package_files do
+    third_party =
+      :os.cmd(~c(find 3rd_party/ipod-gadget/gadget/ -name '*.c' -o -name '*.h' -o -name Makefile))
+      |> to_string()
+      |> String.split("\n", trim: true)
+
+      packages =
+        :os.cmd(~c(find packages/ipod-gadget/))
+        |> to_string()
+        |> String.split("\n", trim: true)
     [
       "fwup_include",
       "rootfs_overlay",
@@ -105,7 +114,7 @@ defmodule IpodGadgetRpi0.MixProject do
       "ramoops.dts",
       "README.md",
       "VERSION"
-    ]
+    ] ++ third_party ++ packages
   end
 
   # Copy the images referenced by docs, since ex_doc doesn't do this.

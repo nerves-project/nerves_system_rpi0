@@ -1,0 +1,6 @@
+[submodule "packages/ipod-gadget/upstream"]
+	path = packages/ipod-gadget/upstream
+	url = https://github.com/jeanparpaillon/ipod-gadget.git
+[submodule "3rd_party/ipod-gadget"]
+	path = 3rd_party/ipod-gadget
+	url = https://github.com/jeanparpaillon/ipod-gadget.git

@@ -1,0 +1,8 @@
+# Author: Jean parpaillon
+config BR2_PACKAGE_IPOD_GADGET
+  bool "ipod-gadget"
+  help
+    Ipod gadget provides Ipod USB emulation through a kernel module and a
+    userspace tool.
+
+    https://github.com/oandrew/ipod-gadget
