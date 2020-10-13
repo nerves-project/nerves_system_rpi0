@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.0-rc.1
+
+Sync with changes up to v1.13.0
+
 ## v2.0.0-rc.0
 
 * New Features
