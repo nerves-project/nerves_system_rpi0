@@ -1,28 +1,26 @@
 /dts-v1/;
 /plugin/;
 
-/ {
+/{
 	compatible = "brcm,bcm2835";
 
 	fragment@0 {
-		target-path = "/";
+		target = <&rmem>;
 		__overlay__ {
-			reserved-memory {
-				#address-cells = <1>;
-				#size-cells = <1>;
-				ranges;
+			/* See arch/arm/boot/dts/bcm283x.dtsi for rmem definition. */
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
 
-				ramoops: ramoops@0f000000 {
-					compatible = "ramoops";
-					reg = <0x0b000000 0x100000>; /* 1 MB */
-                                        ecc-size = <16>;
-					record-size = <0x20000>; /* 128kB */
-					console-size = <0x20000>;
-					ftrace-size = <0>;
-					pmsg-size = <0x20000>;
-				};
+			ramoops: ramoops@b000000 {
+				compatible = "ramoops";
+				reg = <0x0b000000 0x100000>; /* 1 MB */
+                                ecc-size = <16>;
+				record-size = <0x20000>; /* 128kB */
+				console-size = <0x20000>;
+				ftrace-size = <0>;
+				pmsg-size = <0x20000>;
 			};
 		};
 	};
 };
-
