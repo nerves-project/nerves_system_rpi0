@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.13.3
+
+This is a bug fix release and contains no major changes.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.7)
+  * [Erlang/OTP 23.1.5](https://erlang.org/download/OTP-23.1.5.README)
+
 ## v1.13.2
 
 This release includes a patch release update to
