@@ -8,11 +8,11 @@ BR2_REPRODUCIBLE=y
 BR2_TOOLCHAIN_EXTERNAL=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM=y
 BR2_TOOLCHAIN_EXTERNAL_DOWNLOAD=y
-BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v1.3.2/nerves_toolchain_armv6_rpi_linux_gnueabi-linux_x86_64-1.3.2-CDA7B05.tar.xz"
-BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="armv6-rpi-linux-gnueabi"
-BR2_TOOLCHAIN_EXTERNAL_GCC_9=y
-BR2_TOOLCHAIN_EXTERNAL_HEADERS_4_14=y
+BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v1.4.0/nerves_toolchain_armv6_nerves_linux_gnueabi-linux_x86_64-1.4.0-407891C.tar.xz"
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="armv6-nerves-linux-gnueabi"
+BR2_TOOLCHAIN_EXTERNAL_HEADERS_4_4=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_GLIBC=y
+# BR2_TOOLCHAIN_EXTERNAL_INET_RPC is not set
 BR2_TOOLCHAIN_EXTERNAL_CXX=y
 BR2_ROOTFS_SKELETON_CUSTOM=y
 BR2_ROOTFS_SKELETON_CUSTOM_PATH="${BR2_EXTERNAL_NERVES_PATH}/board/nerves-common/skeleton"
