@@ -44,6 +44,12 @@ defmodule NervesSystemRpi0.MixProject do
       artifact_sites: [
         {:github_releases, "#{@github_organization}/#{@app}"}
       ],
+      env: %{
+        "TARGET_ARCH" => "arm",
+        "TARGET_CPU" => "arm1176jzf_s",
+        "TARGET_OS" => "linux",
+        "TARGET_ABI" => "gnueabi", # TODO: Update to hf
+      },
       build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
       platform_config: [
