@@ -15,7 +15,7 @@
 			ramoops: ramoops@b000000 {
 				compatible = "ramoops";
 				reg = <0x0b000000 0x100000>; /* 1 MB */
-                                ecc-size = <16>;
+				ecc-size = <16>;
 				record-size = <0x20000>; /* 128kB */
 				console-size = <0x20000>;
 				ftrace-size = <0>;
