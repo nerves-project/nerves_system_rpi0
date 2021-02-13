@@ -56,7 +56,7 @@ defmodule NervesSystemRpi0.MixProject do
         {"TARGET_ARCH", "arm"},
         {"TARGET_CPU", "arm1176jzf_s"},
         {"TARGET_OS", "linux"},
-        {"TARGET_ABI", "gnueabi"}
+        {"TARGET_ABI", "gnueabihf"}
       ],
       checksum: package_files()
     ]
