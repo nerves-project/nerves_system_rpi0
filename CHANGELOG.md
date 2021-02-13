@@ -4,8 +4,8 @@
 
 This release updates to Buildroot 2020.11.2, GCC 10.2 and OTP 23.2.4.
 
-When migrating custom systems based, please be aware of the following important
-changes:
+When migrating custom systems based on this one, please be aware of the
+following important changes:
 
 * There's a new `getrandom` syscall that is made early in BEAM startup. This
   blocks the BEAM before `rngd` can be started to provide entropy. The
