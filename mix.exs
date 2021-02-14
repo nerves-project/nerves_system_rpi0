@@ -13,12 +13,12 @@ defmodule NervesSystemRpi0.MixProject do
       app: @app,
       version: @version,
       elixir: "~> 1.6",
-      compilers: Mix.compilers() ++ [:nerves_package],
+      compilers: compilers(Mix.env()),
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
+      aliases: aliases(Mix.env()),
       docs: docs(),
       preferred_cli_env: %{
         docs: :docs,
@@ -28,9 +28,15 @@ defmodule NervesSystemRpi0.MixProject do
     ]
   end
 
+  defp compilers(:docs), do: Mix.compilers()
+  defp compilers(_), do: Mix.compilers() ++ [:nerves_package]
+
   def application do
     []
   end
+
+  defp aliases(:docs), do: [docs: ["docs", &copy_images/1]]
+  defp aliases(_), do: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]]
 
   defp bootstrap(args) do
     set_target()
@@ -66,7 +72,7 @@ defmodule NervesSystemRpi0.MixProject do
     [
       {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.3", runtime: false},
       {:nerves_system_br, "1.14.4", runtime: false},
-      {:nerves_toolchain_armv6_nerves_linux_gnueabihf, "~> 1.4.1", runtime: false},
+      {:nerves_toolchain_armv6_nerves_linux_gnueabihf, "~> 1.4.1", only: [:dev, :prod, :test], runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
