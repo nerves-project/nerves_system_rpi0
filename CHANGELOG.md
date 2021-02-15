@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.14.1
+
+This is a patch release for v1.14.0 which fixes the ABI spec passed for zigler.
+
+* Improvements
+  * A few unused directories in `/etc` have been removed. These primarily were
+    network initialization script directories that aren't used on Nerves, but
+    were provided by default by Buildroot.
+
 ## v1.14.0
 
 This release updates to Buildroot 2020.11.2, GCC 10.2 and OTP 23.2.4.
