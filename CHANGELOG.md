@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.14.2
+
+This is a patch release to update to Buildroot 2020.11.3 and OTP 23.2.5.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.14.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.14.5)
+  * [Buildroot 2020.11.3](http://lists.busybox.net/pipermail/buildroot/2021-February/304041.html)
+  * [Erlang/OTP 23.2.5](https://erlang.org/download/OTP-23.2.5.README)
+
 ## v1.14.1
 
 This is a patch release for v1.14.0 which fixes the ABI spec passed for zigler.
