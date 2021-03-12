@@ -52,15 +52,24 @@ defmodule NervesSystemRpi0.MixProject do
       platform_config: [
         defconfig: "nerves_defconfig"
       ],
+      # The :env key is an optional experimental feature for adding environment
+      # variables to the crosscompile environment. These are intended for
+      # llvm-based tooling that may need more precise processor information.
+      env: [
+        {"TARGET_ARCH", "arm"},
+        {"TARGET_CPU", "arm1176jzf_s"},
+        {"TARGET_OS", "linux"},
+        {"TARGET_ABI", "gnueabihf"}
+      ],
       checksum: package_files()
     ]
   end
 
   defp deps do
     [
-      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.0", runtime: false},
-      {:nerves_system_br, "1.13.2", runtime: false},
-      {:nerves_toolchain_armv6_rpi_linux_gnueabi, "~> 1.3.0", runtime: false},
+      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.3", runtime: false},
+      {:nerves_system_br, "1.14.4", runtime: false},
+      {:nerves_toolchain_armv6_nerves_linux_gnueabihf, "~> 1.4.1", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
@@ -100,7 +109,7 @@ defmodule NervesSystemRpi0.MixProject do
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-4.19.defconfig",
+      "linux-5.4.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "nerves_initramfs.conf",
@@ -118,10 +127,9 @@ defmodule NervesSystemRpi0.MixProject do
   end
 
   defp build_runner_opts() do
-    if primary_site = System.get_env("BR2_PRIMARY_SITE") do
-      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}"]]
-    else
-      []
+    case System.get_env("BR2_PRIMARY_SITE") do
+      nil -> []
+      primary_site -> [make_args: ["BR2_PRIMARY_SITE=#{primary_site}"]]
     end
   end
 
