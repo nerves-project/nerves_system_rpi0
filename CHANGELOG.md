@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.0-rc.2
+
+Sync with changes up to v1.14.1
+
 ## v2.0.0-rc.1
 
 Sync with changes up to v1.13.0
