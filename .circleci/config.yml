@@ -25,12 +25,6 @@ workflows:
           context: org-global
           requires:
             - build-tools/build-system
-      - build-tools/deploy-test:
-          exec:
-            <<: *exec
-          context: org-global
-          requires:
-            - build-tools/build-test
       - build-tools/deploy-system:
           exec:
             <<: *exec
