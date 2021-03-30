@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.15.0
+
+This release updates to Buildroot 2021.02 and OTP 23.2.7. If you have made a
+custom system off this one, please review the `nerves_system_br v1.15.0` release
+notes.
+
+The Nerves toolchain has also been updated to v1.4.2. This brings in Linux 4.14
+headers to enable use of cdev and eBPF. This won't affect most users.
+
+* Updated dependencies
+  * [nerves_system_br v1.15.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.15.0)
+  * [Buildroot 2021.02](http://lists.busybox.net/pipermail/buildroot/2021-March/305168.html)
+  * [Erlang/OTP 23.2.7](https://erlang.org/download/OTP-23.2.7.README)
+  * [nerves toolchains v1.4.2](https://github.com/nerves-project/toolchains/releases/tag/v1.4.2)
+
 ## v1.14.1
 
 This is a patch release for v1.14.0 which fixes the ABI spec passed for zigler.
