@@ -41,7 +41,7 @@ for more information.
 
 If you need custom modifications to this system for your device, clone this
 repository and update as described in [Making custom
-systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
+systems](https://hexdocs.pm/nerves/customizing-systems.html)
 
 ## USB OTG support
 
