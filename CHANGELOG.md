@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.15.1
+
+This is a security/bug fix release that updates to Buildroot 2021.02.1 and OTP
+23.3.1. It should be safe for everyone to apply.
+
+* Improvements
+  * espeak has been removed from the default install to trim 13 MB off the root
+    filesystem
+
+* Updated dependencies
+  * [nerves_system_br v1.15.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.15.1)
+  * [Buildroot 2021.02](http://lists.busybox.net/pipermail/buildroot/2021-April/307970.html)
+  * [Erlang/OTP 23.3.1](https://erlang.org/download/OTP-23.3.1.README)
+
 ## v1.15.0
 
 This release updates to Buildroot 2021.02 and OTP 23.2.7. If you have made a
