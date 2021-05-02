@@ -37,6 +37,7 @@ dtoverlay=ramoops
 # Enable the UART (/dev/ttyAMA0) on the RPi0.
 enable_uart=1
 dtoverlay=miniuart-bt
+core_freq=250
 
 # The active LED is active low instead of active high like other Raspberry Pis
 dtparam=act_led_activelow=on
