@@ -106,7 +106,7 @@ defmodule NervesSystemRpi0.MixProject do
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-5.4.defconfig",
+      "linux-5.10.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
