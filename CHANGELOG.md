@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.16.1
+
+This release updates Nerves Toolchains to v1.4.3 and OTP 24.0.3. It should be safe for everyone to apply.
+
+* Updated dependencies
+  * [nerves_system_br v1.16.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.16.1)
+  * [Erlang/OTP 24.0.3](https://erlang.org/download/OTP-24.0.3.README)
+  * [nerves toolchains v1.4.3](https://github.com/nerves-project/toolchains/releases/tag/v1.4.3)
+
 ## v1.16.0
 
 This release updates to Buildroot 2021.05 and OTP 24.0.2. If you have made a
