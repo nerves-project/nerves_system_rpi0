@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.17.0
+
+This release updates to Buildroot 2021.08 and OTP 24.1. If you have made a
+custom system off this one, please review the `nerves_system_br v1.17.0` release
+notes.
+
+* Updated dependencies
+  * [nerves_system_br v1.17.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.0)
+  * [Buildroot 2021.08](http://lists.busybox.net/pipermail/buildroot/2021-September/622072.html)
+  * [Erlang/OTP 24.1](https://erlang.org/download/OTP-24.1.README)
+
 ## v1.16.2
 
 This release updates Erlang/OTP from 24.0.3 to 24.0.5 and Buildroot from 2021.05
