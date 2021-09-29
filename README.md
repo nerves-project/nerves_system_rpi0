@@ -29,7 +29,7 @@ appropriate for your setup.
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | No                              |
 | WiFi                 | Supported on the Pi Zero W      |
-| Bluetooth            | Not supported yet               |
+| Bluetooth            | [Supported on the Pi Zero W](#bluetooth) |
 | Audio                | HDMI/Stereo out                 |
 
 ## Using
@@ -79,6 +79,13 @@ can supply 5V. Just don't connect the 5V wire.
 The base image includes drivers for the onboard Raspberry Pi Zero W wifi module
 (`brcmfmac` driver). Due to the USB port being placed in gadget mode, this
 system does not support USB WiFi adapters.
+
+## Bluetooth
+
+[BlueHeronTransportUART](https://github.com/blue-heron/blue_heron_transport_uart)
+supports bluetooth on the Pi Zero W using `ttyS0`.
+See details
+[here](https://github.com/nerves-project/nerves_system_rpi0/issues/224#issuecomment-913799838).
 
 ## Audio
 
