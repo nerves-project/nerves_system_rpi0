@@ -37,6 +37,9 @@ dtoverlay=ramoops
 # Enable the UART (/dev/ttyAMA0) on the RPi0.
 enable_uart=1
 dtoverlay=miniuart-bt
+# Set the GPU frequency so that the MiniUART (/dev/ttyS0) can be used for
+# Bluetooth. This has a small performance impact. See
+# https://www.raspberrypi.org/documentation/computers/config_txt.html#overclocking.
 core_freq=250
 
 # The active LED is active low instead of active high like other Raspberry Pis
