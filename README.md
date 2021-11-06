@@ -4,7 +4,9 @@
 [![Hex version](https://img.shields.io/hexpm/v/nerves_system_rpi0.svg "Hex version")](https://hex.pm/packages/nerves_system_rpi0)
 
 This is the base Nerves System configuration for the Raspberry Pi Zero and
-Raspberry Pi Zero W.
+Raspberry Pi Zero W. See
+[`nerves_system_rpi3a`](https://github.com/nerves-project/nerves_system_rpi3a)
+for support for the Raspberry Pi Zero 2 W.
 
 If you are *not* interested in [Gadget Mode](http://www.linux-usb.org/gadget/)
 then check out
