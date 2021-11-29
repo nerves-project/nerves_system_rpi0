@@ -12,6 +12,13 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.17.3
+
+* Updated dependencies
+  * [nerves_system_br v1.17.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.4)
+  * [Buildroot 2021.08.2](http://lists.busybox.net/pipermail/buildroot/2021-November/628323.html)
+  * [Erlang/OTP 24.1.7](https://erlang.org/download/OTP-24.1.7.README).
+
 ## v1.17.2
 
 This release updates the Linux kernel from 5.4 to 5.10 to follow the Raspberry
