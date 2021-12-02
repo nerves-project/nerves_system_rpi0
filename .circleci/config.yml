@@ -6,7 +6,7 @@ exec: &exec
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@0.1.4
+  build-tools: nerves-project/build-tools@0.1.5
 
 workflows:
   version: 2
@@ -15,6 +15,7 @@ workflows:
       - build-tools/build-system:
           exec:
             <<: *exec
+          resource-class: large
           context: org-global
           filters:
             tags:
