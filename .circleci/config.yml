@@ -6,17 +6,24 @@ exec: &exec
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@0.1.5
+  build-tools: nerves-project/build-tools@0.2.1
 
 workflows:
   version: 2
   build_test_deploy:
     jobs:
+      - build-tools/get-br-dependencies:
+          exec:
+            <<: *exec
+          context: org-global
+          push-to-download-site: true
       - build-tools/build-system:
           exec:
             <<: *exec
           resource-class: large
           context: org-global
+          requires:
+            - build-tools/get-br-dependencies
           filters:
             tags:
               only: /.*/
