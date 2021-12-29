@@ -6,7 +6,7 @@ exec: &exec
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@0.2.1
+  build-tools: nerves-project/build-tools@0.2.2
 
 workflows:
   version: 2
@@ -16,7 +16,6 @@ workflows:
           exec:
             <<: *exec
           context: org-global
-          push-to-download-site: true
       - build-tools/build-system:
           exec:
             <<: *exec
