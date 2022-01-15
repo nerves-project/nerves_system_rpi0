@@ -12,6 +12,17 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.18.1
+
+* Updated dependencies
+  * [nerves_system_br v1.18.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.3)
+
+* Changes
+  * The `cpufreq` directories are available again. This was a regression that
+    would break code that manually adjusted the CPU frequency.
+  * Programs that use OpenMP will run now. The OpenMP shared library
+    (`libgomp.so`) was supplied by the toolchain, but not copied.
+
 ## v1.18.0
 
 This release updates to Buildroot 2021.11 and OTP 24.2. If you have made a
