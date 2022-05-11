@@ -18,7 +18,7 @@ defmodule NervesSystemRpi0.MixProject do
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
+      aliases: [loadconfig: [&bootstrap/1]],
       docs: docs(),
       preferred_cli_env: %{
         docs: :docs,
@@ -84,6 +84,7 @@ defmodule NervesSystemRpi0.MixProject do
     [
       extras: ["README.md", "CHANGELOG.md"],
       main: "readme",
+      assets: "assets",
       source_ref: "v#{@version}",
       source_url: @source_url,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
@@ -117,11 +118,6 @@ defmodule NervesSystemRpi0.MixProject do
       "README.md",
       "VERSION"
     ]
-  end
-
-  # Copy the images referenced by docs, since ex_doc doesn't do this.
-  defp copy_images(_) do
-    File.cp_r("assets", "doc/assets")
   end
 
   defp build_runner_opts() do
