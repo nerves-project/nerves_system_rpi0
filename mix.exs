@@ -12,13 +12,13 @@ defmodule NervesSystemRpi0.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.11",
+      target: :target,
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1]],
       docs: docs(),
       preferred_cli_env: %{
         docs: :docs,
@@ -30,12 +30,6 @@ defmodule NervesSystemRpi0.MixProject do
 
   def application do
     []
-  end
-
-  defp bootstrap(args) do
-    set_target()
-    Application.start(:nerves_bootstrap)
-    Mix.Task.run("loadconfig", args)
   end
 
   defp nerves_package do
@@ -129,14 +123,6 @@ defmodule NervesSystemRpi0.MixProject do
     case System.get_env("BR2_PRIMARY_SITE") do
       nil -> []
       primary_site -> ["BR2_PRIMARY_SITE=#{primary_site}"]
-    end
-  end
-
-  defp set_target() do
-    if function_exported?(Mix, :target, 1) do
-      apply(Mix, :target, [:target])
-    else
-      System.put_env("MIX_TARGET", "target")
     end
   end
 end
