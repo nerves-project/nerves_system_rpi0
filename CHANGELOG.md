@@ -12,6 +12,17 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.19.0
+
+This release updates to Buildroot 2022.02.1 and OTP 25.0. While this should be
+an easy update for most projects, many programs have been updated. Please review
+the changes in the updated dependencies for details.
+
+* Updated dependencies
+  * [nerves_system_br v1.19.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.19.0)
+  * [Buildroot 2022.02.1](http://lists.busybox.net/pipermail/buildroot/2022-April/640712.html). Also see [Buildroot 2022.02](http://lists.busybox.net/pipermail/buildroot/2022-March/638160.html)
+  * [Erlang/OTP 25.0](https://erlang.org/download/OTP-25.0.README)
+
 ## v1.18.4
 
 This release bumps Erlang to 24.3.2 and should be a low risk upgrade from the
