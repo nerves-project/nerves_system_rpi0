@@ -12,6 +12,20 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.20.0
+
+This release updates to Buildroot 2022.05, Linux 5.15.32 (from Linux 5.10) and
+uses GCC 11.3 (from GCC 10.3). The Linux kernel upgrade could introduce a
+regression, so please verify hardware-specific functionality in your firmware.
+
+If you have cloned this repository for a custom system, please make sure that
+you have `CONFIG_NOP_USB_XCEIV=y` in your Linux kernel configuration.
+
+* Updated dependencies
+  * [nerves_system_br v1.20.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.20.3)
+  * [Buildroot 2022.05](http://lists.busybox.net/pipermail/buildroot/2022-June/644349.html)
+  * [Erlang/OTP 25.0.2](https://erlang.org/download/OTP-25.0.2.README)
+
 ## v1.19.0
 
 This release updates to Buildroot 2022.02.1 and OTP 25.0. While this should be
