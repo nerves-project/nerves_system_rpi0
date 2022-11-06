@@ -1,6 +1,7 @@
 BR2_arm=y
 BR2_arm1176jzf_s=y
 BR2_TOOLCHAIN_EXTERNAL=y
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM=y
 BR2_TOOLCHAIN_EXTERNAL_DOWNLOAD=y
 BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v1.6.0/nerves_toolchain_armv6_nerves_linux_gnueabihf-linux_${shell uname -m}-1.6.0-C69031C.tar.xz"
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="armv6-nerves-linux-gnueabihf"
