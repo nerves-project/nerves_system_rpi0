@@ -12,6 +12,22 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.21.2
+
+* Changes
+  * Two Buildroot patch updates and an Erlang minor version update
+  * Nerves Heart v2.0 is now included. Nerves Heart connects the Erlang runtime
+    to a hardware watchdog. v2.0 has numerous updates to improve information
+    that you can get and also has more safeguards to avoid conditions that could
+    cause a device to hang forever.
+
+* Updated dependencies
+  * linux 5.15.78 (RPi 1.20221104)
+  * [nerves_system_br v1.21.6](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.21.6)
+  * [Erlang/OTP 25.2](https://erlang.org/download/OTP-25.2.README)
+  * [Buildroot 2022.08.3](https://lore.kernel.org/buildroot/87r0x7z5cw.fsf@dell.be.48ers.dk/T/#u)
+  * [nerves_heart v2.0.2](https://github.com/nerves-project/nerves_heart/releases/tag/v2.0.2)
+
 ## v1.21.1
 
 * Changes
