@@ -12,6 +12,16 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.22.0
+
+This is a Buildroot version update that appears to mostly contain bug and
+security fixes. It should be a low risk upgrade from v1.21.2.
+
+* Updated dependencies
+  * [nerves_system_br v1.22.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.22.1)
+  * [Buildroot 2022.11](http://lists.busybox.net/pipermail/buildroot/2022-December/656980.html)
+  * GCC 12.2
+
 ## v1.21.2
 
 * Changes
