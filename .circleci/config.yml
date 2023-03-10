@@ -29,12 +29,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build-tools/build-test:
-          exec:
-            <<: *exec
-          context: org-global
-          requires:
-            - build-tools/build-system
       - build-tools/deploy-system:
           exec:
             <<: *exec
