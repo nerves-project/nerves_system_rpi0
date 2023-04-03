@@ -1,12 +1,12 @@
 exec: &exec
   name: build-tools/nerves-system-br
-  version: 1.22.4
-  elixir: 1.14.3-otp-25
+  version: 1.22.5
+  elixir: 1.14.4-otp-25
 
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@0.2.2
+  build-tools: nerves-project/build-tools@0.2.3
 
 workflows:
   version: 2
