@@ -106,7 +106,7 @@ defmodule NervesSystemRpi0.MixProject do
       "CHANGELOG.md",
       "cmdline.txt",
       "config.txt",
-      "fwup-revert.conf",
+      "fwup-ops.conf",
       "fwup.conf",
       "LICENSE",
       "linux-5.15.defconfig",
