@@ -109,7 +109,7 @@ defmodule NervesSystemRpi0.MixProject do
       "fwup-ops.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-5.15.defconfig",
+      "linux-6.1.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
