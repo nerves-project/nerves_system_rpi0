@@ -12,6 +12,14 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.25.1
+
+This is a security/bug fix update.
+
+ Package updates
+  * [Erlang/OTP 26.2.1](https://erlang.org/download/OTP-26.2.1.README)
+  * [nerves_heart 2.3.0](https://github.com/nerves-project/nerves_heart/releases/tag/v2.3.0)
+
 ## v1.25.0
 
 This is a major Buildroot, toolchain, and Linux kernel update that also adds
