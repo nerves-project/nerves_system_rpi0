@@ -1,7 +1,7 @@
 exec: &exec
   name: build-tools/nerves-system-br
-  version: 1.27.2
-  elixir: 1.16.2-otp-26
+  version: 1.27.3
+  elixir: 1.16.3-otp-26
 
 version: 2.1
 
