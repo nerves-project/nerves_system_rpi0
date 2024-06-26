@@ -12,7 +12,8 @@ defmodule NervesSystemRpi0.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.6",
+      # Because we're using OTP 27, we need to enforce Elixir 1.17 or later.
+      elixir: "~> 1.17",
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
