@@ -67,7 +67,7 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp deps do
     [
-      {:nerves, "~> 1.6.0 or ~> 1.7.15 or ~> 1.8", runtime: false},
+      {:nerves, "~> 1.11", runtime: false},
       {:nerves_system_br, "1.28.0", runtime: false},
       {:nerves_toolchain_armv6_nerves_linux_gnueabihf, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
