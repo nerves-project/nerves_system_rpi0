@@ -12,6 +12,35 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.28.0
+
+This is a major Erlang, Buildroot, Linux and Raspberry Pi display and camera
+update. Please read below and expect to spend some time on the update.
+
+Please see the [nerves_system_br v1.28.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.0)
+for upgrade instructions if you've forked this system.
+
+* Changes
+  * Elixir 1.17 and Erlang/OTP 27 support
+  * Switch from the Raspberry Pi's deprecated MMAL media support to DRM and
+    libcamera. This is a big change if you use the display or camera that has
+    been a long time coming. Please plan some time to make the upgrade.
+  * Upgrade from Linux 6.1 to Linux 6.6
+  * Reduce copy/pasted definitions in the `fwup.conf` by extracting them to
+    `fwup_include/fwup-common.conf`. (No functional changes)
+
+* Fixes
+  * The serial numbers returned by `Nerves.Runtime.serial_number/0` now contain
+    the whole serial number. If you forked this system, check the
+    `boardid.config` and `erlinit.config` for the changes and to keep the
+    hostname the same.
+
+* Updated dependencies
+  * Linux 6.6.31 (Raspberry Pi stable_20240529 release)
+  * [nerves_system_br v1.28.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.1)
+  * [Buildroot 2024.05](https://lore.kernel.org/buildroot/87bk46tjk2.fsf@dell.be.48ers.dk/T/)
+  * [Erlang/OTP 27.0](https://erlang.org/download/OTP-27.0.README)
+
 ## v1.27.1
 
 This is a security/bug fix update.
@@ -24,7 +53,7 @@ This is a security/bug fix update.
 
 This is a major Buildroot update.
 
-Please see the [nerves_system_br v1.27.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.26.0)
+Please see the [nerves_system_br v1.27.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.27.0)
 for upgrade instructions if you've forked this system.
 
 * Changes
