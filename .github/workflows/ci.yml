@@ -1,0 +1,55 @@
+name: CI
+
+on: [push]
+
+env:
+  OTP_VERSION: 27.1.2
+  ELIXIR_VERSION: 1.17.3-otp-27
+  NERVES_BOOTSTRAP_VERSION: 1.13.0
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  get-br-dependencies:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gridpoint-com/actions-nerves-system@v1
+      - name: Get Buildroot Dependencies
+        uses: ./.actions/get-br-dependencies
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
+          push-to-download-site: false
+          download-site-url: ${{ vars.PUBLIC_S3_SITE }}
+          download-site-bucket-uri: ${{ vars.S3_BUCKET }}
+          aws-role: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+  build-system:
+    needs: [get-br-dependencies]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gridpoint-com/actions-nerves-system@v1
+      - name: Build nerves_system
+        uses: ./.actions/build-system
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
+  deploy-system:
+    needs: [build-system]
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gridpoint-com/actions-nerves-system@v1
+      - name: Deploy nerves_system
+        uses: ./.actions/deploy-system
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
