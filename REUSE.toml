@@ -67,7 +67,8 @@ SPDX-License-Identifier = "CC0-1.0"
 [[annotations]]
 path = [
  "busybox.fragment",
- "cmdline.txt",
+ "cmdline-a.txt",
+ "cmdline-b.txt",
  "config.txt",
  "rootfs_overlay/etc/boardid.config",
  "rootfs_overlay/etc/erlinit.config",
