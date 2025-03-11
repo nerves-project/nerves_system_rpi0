@@ -1,7 +1,8 @@
 # Raspberry Pi Model Zero
 
-[![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_rpi0.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_rpi0)
 [![Hex version](https://img.shields.io/hexpm/v/nerves_system_rpi0.svg "Hex version")](https://hex.pm/packages/nerves_system_rpi0)
+[![CI](https://github.com/nerves-project/nerves_system_rpi0/actions/workflows/ci.yml/badge.svg)](https://github.com/nerves-project/nerves_system_rpi0/actions/workflows/ci.yml)
+[![REUSE status](https://api.reuse.software/badge/github.com/nerves-project/nerves_system_rpi0)](https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi0)
 
 This is the base Nerves System configuration for the Raspberry Pi Zero and
 Raspberry Pi Zero W. See
