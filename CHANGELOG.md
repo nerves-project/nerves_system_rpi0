@@ -12,6 +12,25 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.30.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.30.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.30.0)
+for upgrade instructions if you've forked this system.
+
+* Changes
+  * Add REUSE compliance to help improve OSS copyright and licensing accuracy
+  * Update Raspberry Pi libraries and firmware to latest releases
+
+* Updated dependencies
+  * [Erlang/OTP 27.3](https://erlang.org/download/OTP-27.3.README.md)
+  * [Buildroot 2024.11.2](https://lore.kernel.org/buildroot/87v7t3nyls.fsf@dell.be.48ers.dk/T/)
+  * Linux 6.6.74 (Raspberry Pi 1.20250127 release)
+  * rpicam-apps 1.5.3
+  * rpi-libcamera v0.3.2+rpt20241119
+  * rpi-distro-firmware-nonfree 1:20230625-2+rpt3
+
 ## v1.29.1
 
 This is a security/bug fix update.
