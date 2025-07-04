@@ -12,6 +12,22 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.31.1
+
+This is a security/bug fix release.
+
+* Changes
+  * Disabled `PREEMPT_RT` due to reports of instability on 32-bit Raspberry Pis.
+
+* Package updates
+  * [Erlang/OTP 27.3.4.1](https://erlang.org/download/OTP-27.3.4.1.README.md)
+  * [Buildroot 2025.02.3 (fixed 2025.02.2)](https://lore.kernel.org/buildroot/49d039c0-8121-4a91-8a69-889376f85c71@rnout.be/T/)
+  * Raspberry Pi WiFi firmware 1:20240709-2~bpo12+1+rpt3
+  * [rpi-libcamera v0.5.0+rpt20250429](https://github.com/raspberrypi/libcamera/releases/tag/v0.5.0%2Brpt20250429)
+  * rpicam-apps 1.7.0
+  * [erlinit 1.14.3](https://github.com/nerves-project/erlinit/releases/tag/v1.14.3)
+  * [fwup 1.13.0](https://github.com/fwup-home/fwup/releases/tag/v1.13.0)
+
 ## v1.31.0
 
 This is a major Buildroot update.
