@@ -23,9 +23,8 @@ jobs:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
           nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
-          push-to-download-site: false
-          download-site-url: ${{ vars.PUBLIC_S3_SITE }}
-          download-site-bucket-uri: ${{ vars.S3_BUCKET }}
+          push-to-download-site: true
+          download-site-bucket-uri: ${{ vars.DOWNLOAD_SITE_BUCKET_URI }}
           aws-role: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
   build-system:
