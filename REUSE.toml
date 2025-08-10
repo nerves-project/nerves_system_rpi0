@@ -3,6 +3,7 @@ version = 1
 [[annotations]]
 path = [
  ".formatter.exs",
+ ".github/CODEOWNERS",
  ".github/workflows/ci.yml",
  ".gitignore",
  "CHANGELOG.md",
