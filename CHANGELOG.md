@@ -12,6 +12,11 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.31.4
+
+* Changes
+  * Synchronize and fix Raspberry Pi camera settings
+
 ## v1.31.3
 
 This is an important security/bug fix that addresses Erlang CVEs for the ssh
