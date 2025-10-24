@@ -12,6 +12,22 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.32.0
+
+This is a major Erlang and Buildroot update. This updates from Erlang/OTP 27 to
+Erlang/OTP 28.
+
+* Changes
+  * Remove unneeded call to `rngd` and the `rng-tools` package. This was
+    formerly needed to provide entropy to Linux during initialization.
+
+* Package updates
+  * [nerves_system_br v1.32.3 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.32.3)
+
+* Updated dependencies
+  * [Erlang/OTP 28.1.1](https://erlang.org/download/OTP-28.1.1.README.md)
+  * [Buildroot 2025.05.2](https://lore.kernel.org/buildroot/7bed9b2e-a9d3-476b-84d6-61134e2f726f@rnout.be/T/)
+
 ## v1.31.4
 
 * Changes
