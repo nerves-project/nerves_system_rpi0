@@ -55,6 +55,7 @@ SPDX-License-Identifier = "GPL-2.0-only"
 path = [
  "fwup-ops.conf",
  "fwup.conf",
+ "fwup.conf.eex",
  "fwup_include/*"
 ]
 precedence = "aggregate"
