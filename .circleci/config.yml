@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: None
+# SPDX-License-Identifier: CC0-1.0
+
+exec: &exec
+  name: build-tools/nerves-system-br
+  version: 1.32.5
+  elixir: 1.19.4-otp-28
+
+version: 2.1
+
+orbs:
+  build-tools: nerves-project/build-tools@dev:0.3.1-pre1
+
+workflows:
+  build_test_deploy:
+    jobs:
+      - build-tools/get-br-dependencies:
+          resource-class: nerves-project/fartlek2
+          exec:
+            <<: *exec
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build-tools/build-system:
+          exec:
+            <<: *exec
+          resource-class: nerves-project/fartlek2
+          context: org-global
+          requires:
+            - build-tools/get-br-dependencies
+          filters:
+            tags:
+              only: /.*/
+      - build-tools/deploy-system:
+          exec:
+            <<: *exec
+          context: org-global
+          requires:
+            - build-tools/build-system
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/
