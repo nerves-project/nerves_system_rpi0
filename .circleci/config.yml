@@ -6,7 +6,7 @@ exec: &exec
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@dev:aws-cli-fix
+  build-tools: nerves-project/build-tools@dev:0.3.1-pre1
 
 workflows:
   build_test_deploy:
