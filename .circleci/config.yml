@@ -12,7 +12,7 @@ workflows:
   build_test_deploy:
     jobs:
       - build-tools/get-br-dependencies:
-          resource-class: nerves-project/fartlek
+          resource-class: nerves-project/fartlek2
           exec:
             <<: *exec
           context: org-global
@@ -22,7 +22,7 @@ workflows:
       - build-tools/build-system:
           exec:
             <<: *exec
-          resource-class: nerves-project/fartlek
+          resource-class: nerves-project/fartlek2
           context: org-global
           requires:
             - build-tools/get-br-dependencies
