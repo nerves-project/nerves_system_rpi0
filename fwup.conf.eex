@@ -69,7 +69,6 @@ task complete {
 
         include("${NERVES_PROVISIONING}")
 
-        uboot_setenv(uboot-env, "nerves_fw_active", "a") # mirrors autoboot.txt
         uboot_setenv(uboot-env, "nerves_fw_devpath", ${NERVES_FW_DEVPATH})
         uboot_setenv(uboot-env, "a.nerves_fw_validated", "1")
         uboot_setenv(uboot-env, "a.nerves_fw_application_part0_devpath", ${NERVES_FW_APPLICATION_PART0_DEVPATH})
@@ -167,10 +166,12 @@ task upgrade.old-a {
         uboot_setenv(uboot-env, "a.nerves_fw_vcs_identifier", ${NERVES_FW_VCS_IDENTIFIER})
         uboot_setenv(uboot-env, "a.nerves_fw_misc", ${NERVES_FW_MISC})
         uboot_setenv(uboot-env, "a.nerves_fw_uuid", "\${FWUP_META_UUID}")
+        uboot_unsetenv(uboot-env, "nerves_fw_active") # No longer used
+        uboot_unsetenv(uboot-env, "nerves_fw_validated") # No longer used
 
-	# Switch over to boot the new firmware but validate since can't go back
-        uboot_setenv(uboot-env, "nerves_fw_active", "a") # mirrors autoboot.txt
+        # Validate since can't go back
         uboot_setenv(uboot-env, "a.nerves_fw_validated", "1")
+        uboot_setenv(uboot-env, "b.nerves_fw_validated", "0")
         mbr_write(mbr)
     }
 }
@@ -230,10 +231,12 @@ task upgrade.old-b {
         uboot_setenv(uboot-env, "b.nerves_fw_vcs_identifier", ${NERVES_FW_VCS_IDENTIFIER})
         uboot_setenv(uboot-env, "b.nerves_fw_misc", ${NERVES_FW_MISC})
         uboot_setenv(uboot-env, "b.nerves_fw_uuid", "\${FWUP_META_UUID}")
+        uboot_unsetenv(uboot-env, "nerves_fw_active") # No longer used
+        uboot_unsetenv(uboot-env, "nerves_fw_validated") # No longer used
 
-	# Switch over to boot the new firmware but validate since can't go back
-        uboot_setenv(uboot-env, "nerves_fw_active", "b") # mirrors autoboot.txt
+        # Validate since can't go back
         uboot_setenv(uboot-env, "b.nerves_fw_validated", "1")
+        uboot_setenv(uboot-env, "a.nerves_fw_validated", "0")
         mbr_write(mbr)
     }
 }
