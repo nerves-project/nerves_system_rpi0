@@ -12,6 +12,13 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.0.0-rc.3
+
+* Changes
+  * Deleted all use of `nerves_fw_active` since it was sometimes incorrect and
+    caused confusion
+  * Enabled multipath TCP support in the Linux kernel
+
 ## v2.0.0-rc.2
 
 This is a major update of `nerves_system_rpi0` that changes the MicroSD/eMMC
