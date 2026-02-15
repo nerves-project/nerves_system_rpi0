@@ -1,12 +1,13 @@
 # SPDX-FileCopyrightText: None
 # SPDX-License-Identifier: CC0-1.0
+
 name: CI
 
 on: [push]
 
 env:
-  OTP_VERSION: 28.3
-  ELIXIR_VERSION: 1.19.4-otp-28
+  OTP_VERSION: 28.3.1
+  ELIXIR_VERSION: 1.19.5-otp-28
   NERVES_BOOTSTRAP_VERSION: 1.14.0
 
 permissions:
