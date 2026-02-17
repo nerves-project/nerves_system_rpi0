@@ -56,3 +56,7 @@ dtparam=act_led_trigger=heartbeat
 # To turn the LED completely off comment out the previous line and uncomment
 # the next.
 #dtparam=act_led_trigger=none
+
+# To enable low-power functionality with Soleil power management board,
+# uncomment the following line
+# dtoverlay=gpio-poweroff

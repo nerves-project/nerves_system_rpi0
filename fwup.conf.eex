@@ -24,6 +24,7 @@ file_resources = [
   %{name: "bcm2708-rpi-zero.dtb", path: "${NERVES_SYSTEM}/images/bcm2708-rpi-zero.dtb"},
   %{name: "bcm2708-rpi-zero-w.dtb", path: "${NERVES_SYSTEM}/images/bcm2708-rpi-zero-w.dtb"},
   %{name: "overlays/dwc2.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/dwc2.dtbo"},
+  %{name: "overlays/gpio-poweroff.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/gpio-poweroff.dtbo"},
   %{name: "overlays/hifiberry-dac.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/hifiberry-dac.dtbo"},
   %{name: "overlays/i2c-mux.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/i2c-mux.dtbo"},
   %{name: "overlays/imx219.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx219.dtbo"},
