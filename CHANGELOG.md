@@ -12,6 +12,15 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.0.1
+
+This is a security update.
+
+* Package updates
+  * [nerves_system_br 1.33.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.4)
+    * [Erlang/OTP 28.4.1](https://erlang.org/download/OTP-28.4.1.README.md)
+    * [Buildroot 2025.11.2](https://lore.kernel.org/buildroot/de9c890a-760a-4e6d-86b8-f8e5000a07ff@rnout.be/T/)
+
 ## v2.0.0
 
 This is a major update of `nerves_system_rpi0` that changes the MicroSD/eMMC
