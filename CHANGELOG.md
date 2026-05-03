@@ -12,6 +12,17 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.0.3
+
+This is a security and bug fix release.
+
+* Changes
+  * Use https for the backup site
+
+* Package updates
+  * [nerves_system_br 1.33.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.7)
+    * [Erlang/OTP 28.5](https://erlang.org/download/OTP-28.5.README.md)
+    * [fwup 1.16.0](https://github.com/fwup-home/fwup/releases/tag/v1.16.0)
 ## v2.0.2
 
 This is a security update.
