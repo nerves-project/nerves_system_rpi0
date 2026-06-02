@@ -43,12 +43,12 @@ appropriate for your setup.
 
 The most common way of using this Nerves System is create a project with `mix
 nerves.new` and to export `MIX_TARGET=rpi0`. See the [Getting started
-guide](https://hexdocs.pm/nerves/getting-started.html#creating-a-new-nerves-app)
+guide](https://nerves.hexdocs.pm/getting-started.html#creating-a-new-nerves-app)
 for more information.
 
 If you need custom modifications to this system for your device, clone this
 repository and update as described in [Making custom
-systems](https://hexdocs.pm/nerves/customizing-systems.html).
+systems](https://nerves.hexdocs.pm/customizing-systems.html).
 
 ## Upgrading to 2.0
 
@@ -62,7 +62,7 @@ If you don't do this, the device will run the old firmware on the next reboot.
 A simple default way of validating the firmware can be enabled using
 Nerves.Runtime's startup guard feature as described in [Assisted firmware
 validation and automatic
-revert](https://hexdocs.pm/nerves_runtime/readme.html#assisted-firmware-validation-and-automatic-revert).
+revert](https://nerves-runtime.hexdocs.pm/readme.html#assisted-firmware-validation-and-automatic-revert).
 Please follow the directions there for the needed config file update.
 
 If in doubt, use `mix nerves.new` to create a new project and compare what it
@@ -143,7 +143,7 @@ outside of any filesystem. Provisioning is an optional step and reasonable
 defaults are provided if this is missing.
 
 Provisioning information can be queried using the Nerves.Runtime KV store's
-[`Nerves.Runtime.KV.get/1`](https://hexdocs.pm/nerves_runtime/Nerves.Runtime.KV.html#get/1)
+[`Nerves.Runtime.KV.get/1`](https://nerves-runtime.hexdocs.pm/Nerves.Runtime.KV.html#get/1)
 function.
 
 Keys used by this system are:
