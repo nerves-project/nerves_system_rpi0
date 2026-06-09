@@ -3,7 +3,7 @@
 # IMPORTANT:
 # Edit `fwup.conf.eex` and run `mix generate_fwup_conf` to generate fwup.conf.
 #
-require-fwup-version="1.0.0"
+require-fwup-version="1.12.0"
 
 include("${NERVES_SDK_IMAGES:-.}/fwup_include/fwup-common.conf")
 
@@ -279,7 +279,11 @@ task upgrade.a {
     # to the B partition, so an error or power failure during this part
     # won't hurt anything.
     on-resource cmdline-a.txt { fat_write(${BOOT_A_PART_OFFSET}, "cmdline.txt") }
-<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_A_PART_OFFSET}, "<%= resource.name %>") }
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> {
+        delta-source-fat-offset=${BOOT_B_PART_OFFSET}
+        delta-source-fat-path="<%= resource.name %>"
+        fat_write(${BOOT_A_PART_OFFSET}, "<%= resource.name %>")
+    }
 <% end %>
     on-resource rootfs.img {
         delta-source-raw-offset=${ROOTFS_B_PART_OFFSET}
@@ -345,7 +349,11 @@ task upgrade.b {
     # to the A partition, so an error or power failure during this part
     # won't hurt anything.
     on-resource cmdline-b.txt { fat_write(${BOOT_B_PART_OFFSET}, "cmdline.txt") }
-<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_B_PART_OFFSET}, "<%= resource.name %>") }
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> {
+        delta-source-fat-offset=${BOOT_A_PART_OFFSET}
+        delta-source-fat-path="<%= resource.name %>"
+        fat_write(${BOOT_B_PART_OFFSET}, "<%= resource.name %>")
+    }
 <% end %>
     on-resource rootfs.img {
         delta-source-raw-offset=${ROOTFS_A_PART_OFFSET}
