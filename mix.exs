@@ -21,7 +21,8 @@ defmodule NervesSystemRpi0.MixProject do
       deps: deps(),
       aliases: [
         loadconfig: [&bootstrap/1],
-        generate_fwup_conf: &generate_fwup_conf/1
+        generate_fwup_conf: &generate_fwup_conf/1,
+        compile: ["generate_fwup_conf", "compile"]
       ],
       docs: docs()
     ]
@@ -114,7 +115,6 @@ defmodule NervesSystemRpi0.MixProject do
       "cmdline.txt",
       "config.txt",
       "fwup-ops.conf",
-      "fwup.conf.eex",
       "fwup.conf",
       "LICENSES/*",
       "linux-6.12.defconfig",
