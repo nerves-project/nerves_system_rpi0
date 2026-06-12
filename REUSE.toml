@@ -44,7 +44,7 @@ SPDX-License-Identifier = "GPL-2.0-or-later"
 [[annotations]]
 path = [
  "rootfs_overlay/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,model-zero-w.txt",
- "linux-6.12.defconfig",
+ "linux-6.18.defconfig",
  "ramoops-overlay.dts"
 ]
 precedence = "override"
