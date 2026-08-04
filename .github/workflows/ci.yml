@@ -6,9 +6,9 @@ name: CI
 on: [push]
 
 env:
-  OTP_VERSION: 29.0.2
-  ELIXIR_VERSION: 1.19.5-otp-29
-  NERVES_BOOTSTRAP_VERSION: 1.15.0
+  OTP_VERSION: 29.0.4
+  ELIXIR_VERSION: 1.20.2-otp-29
+  NERVES_BOOTSTRAP_VERSION: 1.16.0
 
 permissions:
   id-token: write
