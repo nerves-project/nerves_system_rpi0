@@ -6,7 +6,7 @@ name: CI
 on: [push]
 
 env:
-  OTP_VERSION: 29.0.5
+  OTP_VERSION: 29.0.6
   ELIXIR_VERSION: 1.20.4-otp-29
   NERVES_BOOTSTRAP_VERSION: 1.16.0
 
