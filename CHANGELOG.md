@@ -12,6 +12,16 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.1.2
+
+This is a security and bug fix release.
+
+* Changes
+  * Allow Nerves 2 prereleases to be used
+
+* Package updates
+  * [nerves_system_br 1.34.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.34.4)
+
 ## v2.1.1
 
 This is a security and bug fix release.
