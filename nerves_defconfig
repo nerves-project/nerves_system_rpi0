@@ -5,6 +5,7 @@ BR2_TOOLCHAIN_EXTERNAL_CUSTOM=y
 BR2_TOOLCHAIN_EXTERNAL_DOWNLOAD=y
 BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v15.3.0/nerves_toolchain_armv6_nerves_linux_gnueabihf-linux_${shell uname -m}-15.3.0-C99C337.tar.xz"
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="armv6-nerves-linux-gnueabihf"
+BR2_TOOLCHAIN_EXTERNAL_GCC_15=y
 BR2_TOOLCHAIN_EXTERNAL_HEADERS_6_0=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_GLIBC=y
 # BR2_TOOLCHAIN_EXTERNAL_INET_RPC is not set
