@@ -12,6 +12,18 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.2.0
+
+This is a major Buildroot update with security and feature updates throughout.
+
+It does not appear that custom systems require modification for this upgrade,
+but your system might use something not tested by the officially supported ones.
+
+* Package updates
+  * [nerves_system_br 1.35.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.35.2)
+  * [Buildroot 2026.08](https://lore.kernel.org/buildroot/878q5hf0yd.fsf@dell.be.48ers.dk/T/)
+  * [Erlang/OTP 29.1.2](https://erlang.org/download/OTP-29.1.2.README.md)
+
 ## v2.1.2
 
 This is a security and bug fix release.
