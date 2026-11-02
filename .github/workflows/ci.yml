@@ -19,7 +19,7 @@ jobs:
     runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v7
-      - uses: gridpoint-com/actions-nerves-system@v1
+      - uses: fhunleth/actions-nerves2-package@v0
       - name: Get Buildroot Dependencies
         uses: ./.actions/get-br-dependencies
         with:
@@ -30,28 +30,28 @@ jobs:
           download-site-bucket-uri: ${{ vars.DOWNLOAD_SITE_BUCKET_URI }}
           aws-role: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
-  build-system:
+  build-package:
     needs: [get-br-dependencies]
     runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v7
-      - uses: gridpoint-com/actions-nerves-system@v1
-      - name: Build nerves_system
-        uses: ./.actions/build-system
+      - uses: fhunleth/actions-nerves2-package@v0
+      - name: Build Nerves package
+        uses: ./.actions/build-package
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
           nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
-  deploy-system:
-    needs: [build-system]
+  deploy-package:
+    needs: [build-package]
     if: github.ref_type == 'tag'
     runs-on: blacksmith-4vcpu-ubuntu-2404
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v7
-      - uses: gridpoint-com/actions-nerves-system@v1
-      - name: Deploy nerves_system
-        uses: ./.actions/deploy-system
+      - uses: fhunleth/actions-nerves2-package@v0
+      - name: Deploy Nerves package
+        uses: ./.actions/deploy-package
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
