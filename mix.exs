@@ -63,7 +63,7 @@ defmodule NervesSystemRpi0.MixProject do
         {"TARGET_GCC_FLAGS",
          "-mabi=aapcs-linux -mfpu=vfp -marm -fstack-protector-strong -mfloat-abi=hard -mcpu=arm1176jzf-s -fPIE -pie -Wl,-z,now -Wl,-z,relro"}
       ],
-      checksum: package_files()
+      checksum: source_finger_print_files()
     ]
   end
 
@@ -106,27 +106,33 @@ defmodule NervesSystemRpi0.MixProject do
     ]
   end
 
-  defp package_files do
+  defp source_finger_print_files do
     [
       "fwup_include",
       "rootfs_overlay",
-      "CHANGELOG.md",
       "cmdline-a.txt",
       "cmdline-b.txt",
       "config.txt",
       "fwup-ops.conf",
       "fwup.conf.eex",
-      "LICENSES/*",
       "linux-6.18.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
-      "ramoops-overlay.dts",
+      "ramoops-overlay.dts"
+    ]
+  end
+
+  defp package_files do
+    [
+      "CHANGELOG.md",
+      "checksum.exs",
+      "LICENSES/*",
       "README.md",
       "REUSE.toml",
       "VERSION"
-    ]
+    ] ++ source_finger_print_files()
   end
 
   defp build_runner_opts() do
