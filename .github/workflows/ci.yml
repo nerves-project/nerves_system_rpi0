@@ -39,6 +39,7 @@ jobs:
       - name: Build Nerves package
         uses: ./.actions/build-package
         with:
+          enable-ccache: true
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
           nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
