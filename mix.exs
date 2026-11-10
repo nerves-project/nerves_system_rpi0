@@ -20,7 +20,6 @@ defmodule NervesSystemRpi0.MixProject do
       package: package(),
       deps: deps(),
       aliases: [
-        loadconfig: [&bootstrap/1],
         generate_fwup_conf: &generate_fwup_conf/1
       ],
       docs: docs()
@@ -31,14 +30,11 @@ defmodule NervesSystemRpi0.MixProject do
     []
   end
 
-  defp bootstrap(args) do
-    set_target()
-    Application.start(:nerves_bootstrap)
-    Mix.Task.run("loadconfig", args)
-  end
-
   def cli do
-    [preferred_envs: %{docs: :docs, "hex.build": :docs, "hex.publish": :docs}]
+    [
+      preferred_envs: %{docs: :docs, "hex.build": :docs, "hex.publish": :docs},
+      default_target: :target
+    ]
   end
 
   defp nerves_package do
@@ -109,6 +105,7 @@ defmodule NervesSystemRpi0.MixProject do
 
   defp source_finger_print_files do
     [
+      "config/config.exs",
       "fwup_include",
       "rootfs_overlay",
       "cmdline-a.txt",
@@ -145,14 +142,6 @@ defmodule NervesSystemRpi0.MixProject do
     case System.get_env("BR2_PRIMARY_SITE") do
       nil -> []
       primary_site -> ["BR2_PRIMARY_SITE=#{primary_site}"]
-    end
-  end
-
-  defp set_target() do
-    if function_exported?(Mix, :target, 1) do
-      apply(Mix, :target, [:target])
-    else
-      System.put_env("MIX_TARGET", "target")
     end
   end
 
