@@ -47,6 +47,7 @@ defmodule NervesSystemRpi0.MixProject do
       artifact_sites: [
         {:github_releases, "#{@github_organization}/#{@app}"}
       ],
+      artifact_checksum: true,
       build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
       platform_config: [
